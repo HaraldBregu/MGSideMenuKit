@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import MGSideMenuKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    var window:UIWindow?
+    var sideMenu:MGSideMenu!
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        sideMenu = MGSideMenu(dataSource: SideMenuDataSource(), delegate: SideMenuDelegate())
+        window?.rootViewController = _rootController
+        window?.makeKeyAndVisible()
         return true
     }
 
@@ -41,6 +44,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
 
+extension AppDelegate {
+    
+    private var _rootController:UIViewController {
+        return sideMenu.controller
+    }
+    
+}
+
+class SideMenuDataSource: MGSideMenuDataSource {
+   
+    var headerTitle: String {
+        return "MegaGeneral"
+    }
+    
+    var headerIcon: UIImage {
+        return UIImage()
+    }
+    
+    var data: [MGSideMenuData] {
+        var newData = [MGSideMenuData]()
+        
+        let item0 = MGSideMenuData()
+        item0.title = "Home"
+        item0.selected = true
+        item0.icon = UIImage()
+        item0.indicatorIcon = UIImage()
+        item0.identifier = "home.identifier"
+        
+        newData.append(item0)
+        newData.append(item0)
+        newData.append(item0)
+
+        return newData
+    }
+    
+    func controller(forData data: MGSideMenuData) -> UIViewController {
+        switch data.identifier {
+        case "home.identifier":
+            return UIViewController()
+        default:
+            return UIViewController()
+        }
+    }
+    
+    var design: MGSideMenuLayout {
+        
+        return MGSideMenuLayout()
+    }
+}
+
+class SideMenuDelegate: MGSideMenuDataDelegate {
+    
+    func didSelect(menudata: MGSideMenuData, atIndexPath indexPath: IndexPath) {
+        print("menudata: \(menudata.title)")
+        print("indexpath: \(indexPath.row)")
+    }
+    
+}

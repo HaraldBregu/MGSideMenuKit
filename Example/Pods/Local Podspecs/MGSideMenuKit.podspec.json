@@ -1,0 +1,33 @@
+{
+  "name": "MGSideMenuKit",
+  "version": "0.1.0",
+  "summary": "When you sit down to work, external critics aren’t",
+  "description": "When you sit down to work, external critics aren’t the enemy. It’s you who you must to fight against to do great fucking work. You must overcome yourself. Saul Bass on failure: Failure is built into creativity… the creative act involves this element of ‘newness’ and ‘experimentalism,’ then one must expect and accept the fucking possibility of failure.",
+  "homepage": "https://github.com/AldoOS/MGSideMenuKit",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "AldoOS": "harald.bregu@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/AldoOS/MGSideMenuKit.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source_files": "MGSideMenuKit/Classes/**/*",
+  "resource_bundles": {
+    "MGBrowserKit": [
+      "MGBrowserKit/Classes/**/*.{storyboard,xib}"
+    ]
+  },
+  "dependencies": {
+    "SideMenuSwift": [
+
+    ]
+  },
+  "swift_version": "4.2"
+}

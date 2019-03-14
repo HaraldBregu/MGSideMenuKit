@@ -1,0 +1,6 @@
+framework module Pods_MGSideMenuKit_Example {
+  umbrella header "Pods-MGSideMenuKit_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

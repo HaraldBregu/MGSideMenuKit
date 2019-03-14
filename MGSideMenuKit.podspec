@@ -9,34 +9,19 @@
 Pod::Spec.new do |s|
   s.name             = 'MGSideMenuKit'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of MGSideMenuKit.'
-
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
-
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
-
+  s.summary          = "When you sit down to work, external critics aren’t"
+  s.description      = "When you sit down to work, external critics aren’t the enemy. It’s you who you must to fight against to do great fucking work. You must overcome yourself. Saul Bass on failure: Failure is built into creativity… the creative act involves this element of ‘newness’ and ‘experimentalism,’ then one must expect and accept the fucking possibility of failure."
   s.homepage         = 'https://github.com/AldoOS/MGSideMenuKit'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'AldoOS' => 'harald.bregu@gmail.com' }
   s.source           = { :git => 'https://github.com/AldoOS/MGSideMenuKit.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
-
-  s.ios.deployment_target = '8.0'
-
+  s.ios.deployment_target = '11.0'
   s.source_files = 'MGSideMenuKit/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'MGSideMenuKit' => ['MGSideMenuKit/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.resource_bundles = {
+      'MGBrowserKit' => ['MGBrowserKit/Classes/**/*.{storyboard,xib}']
+  }
+  s.dependency 'SideMenuSwift'
+  s.swift_version = "4.2"
 end
+
+

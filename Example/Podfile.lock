@@ -1,0 +1,23 @@
+PODS:
+  - MGSideMenuKit (0.1.0):
+    - SideMenuSwift
+  - SideMenuSwift (1.0.1)
+
+DEPENDENCIES:
+  - MGSideMenuKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - SideMenuSwift
+
+EXTERNAL SOURCES:
+  MGSideMenuKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MGSideMenuKit: ea3d64d912b0a314a3db697b49489a9aa2a701f5
+  SideMenuSwift: a78d47182aa03b5c07570fe57d3ba22c4561f2ce
+
+PODFILE CHECKSUM: b93c64222447f1a3a8bec4dc97b7ccdf1260a765
+
+COCOAPODS: 1.6.1

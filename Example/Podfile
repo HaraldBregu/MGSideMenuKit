@@ -2,10 +2,5 @@ use_frameworks!
 
 target 'MGSideMenuKit_Example' do
   pod 'MGSideMenuKit', :path => '../'
-
-  target 'MGSideMenuKit_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  
 end
