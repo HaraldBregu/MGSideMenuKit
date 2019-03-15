@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '11.0'
   s.source_files = 'MGSideMenuKit/Classes/**/*'
   s.resource_bundles = {
-      'SideMenuSwift' => ['SideMenuSwift/Classes/**/*.{storyboard,xib}']
+      'MGSideMenuKit' => ['MGSideMenuKit/Classes/**/*.storyboard']
   }
   s.dependency 'SideMenuSwift'
   s.swift_version = '4.2'
