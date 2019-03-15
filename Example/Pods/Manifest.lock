@@ -1,23 +1,41 @@
 PODS:
+  - FontBlaster (4.1.0)
   - MGSideMenuKit (0.1.0):
     - SideMenuSwift
+  - MGTemplateKit (0.1.7):
+    - FontBlaster
+    - UIColor_Hex_Swift (~> 4.2.0)
   - SideMenuSwift (1.0.1)
+  - UIColor_Hex_Swift (4.2.0)
 
 DEPENDENCIES:
   - MGSideMenuKit (from `../`)
+  - "MGTemplateKit (from `https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - FontBlaster
     - SideMenuSwift
+    - UIColor_Hex_Swift
 
 EXTERNAL SOURCES:
   MGSideMenuKit:
     :path: "../"
+  MGTemplateKit:
+    :git: "https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git"
+
+CHECKOUT OPTIONS:
+  MGTemplateKit:
+    :commit: e59c8c520191913bf6c0fa04fd8234fb499ba5f6
+    :git: "https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git"
 
 SPEC CHECKSUMS:
+  FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
   MGSideMenuKit: ea3d64d912b0a314a3db697b49489a9aa2a701f5
+  MGTemplateKit: 8ccf7019c7411698e55b35ee9f6fd0050dbb431d
   SideMenuSwift: a78d47182aa03b5c07570fe57d3ba22c4561f2ce
+  UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
 
-PODFILE CHECKSUM: b93c64222447f1a3a8bec4dc97b7ccdf1260a765
+PODFILE CHECKSUM: 390d7602b7d0baaadd0a49caf1ec0b5303ae5e17
 
 COCOAPODS: 1.6.1

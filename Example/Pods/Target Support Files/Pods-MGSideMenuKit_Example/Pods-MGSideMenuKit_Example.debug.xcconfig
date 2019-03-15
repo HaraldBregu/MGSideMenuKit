@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MGSideMenuKit" "${PODS_CONFIGURATION_BUILD_DIR}/SideMenuSwift"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FontBlaster" "${PODS_CONFIGURATION_BUILD_DIR}/MGSideMenuKit" "${PODS_CONFIGURATION_BUILD_DIR}/MGTemplateKit" "${PODS_CONFIGURATION_BUILD_DIR}/SideMenuSwift" "${PODS_CONFIGURATION_BUILD_DIR}/UIColor_Hex_Swift"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/MGSideMenuKit/MGSideMenuKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SideMenuSwift/SideMenuSwift.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/FontBlaster/FontBlaster.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MGSideMenuKit/MGSideMenuKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/MGTemplateKit/MGTemplateKit.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SideMenuSwift/SideMenuSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_LDFLAGS = $(inherited) -framework "MGSideMenuKit" -framework "SideMenuSwift"
+OTHER_LDFLAGS = $(inherited) -framework "FontBlaster" -framework "MGSideMenuKit" -framework "MGTemplateKit" -framework "SideMenuSwift" -framework "UIColor_Hex_Swift" -framework "UIKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

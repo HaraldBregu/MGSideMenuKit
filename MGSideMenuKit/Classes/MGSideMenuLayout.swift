@@ -26,11 +26,12 @@
 import Foundation
 
 public class MGSideMenuLayout {
-    public var navigationBarBackgroundColor:UIColor!
-    public var navigationBarTintColor:UIColor!
-    public var viewBackgroundColor:UIColor!
-    public var leftBarButtonImage:UIImage!
-    
+    public var navBackgroundColor:UIColor!
+    public var navTintColor:UIColor!
+    public var backgroundColor:UIColor!
+    public var tintColor:UIColor!
+    public var font:UIFont!
+
     public init() {
         
     }

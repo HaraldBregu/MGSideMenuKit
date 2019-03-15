@@ -2,5 +2,6 @@ use_frameworks!
 
 target 'MGSideMenuKit_Example' do
   pod 'MGSideMenuKit', :path => '../'
-  
+  pod 'MGTemplateKit', :git => 'https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git'
+
 end

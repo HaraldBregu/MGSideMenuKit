@@ -31,12 +31,14 @@ public class MGMenuController: UIViewController {
     var headerTitle: String!
     var headerIcon: UIImage!
     var data:[MGSideMenuData] = []
+    var layout:MGSideMenuLayout!
+
     var didSelectMenuDataAtIndexPath:((MGSideMenuData, IndexPath) -> ())!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        //view.backgroundColor = MGGeneral.NavBar.Theme.dark
+        view.backgroundColor = layout.backgroundColor
         navigationController?.isNavigationBarHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
@@ -44,12 +46,8 @@ public class MGMenuController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        //tableView.backgroundColor = MGGeneral.NavBar.Theme.dark
-        //tableView.separatorColor = MGGeneral.NavBar.Theme.dark
-        
-        view.backgroundColor = .yellow
-        tableView.backgroundColor = .yellow
-        tableView.separatorColor = .yellow
+        tableView.backgroundColor = layout.backgroundColor
+        tableView.separatorColor = layout.backgroundColor
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -62,15 +60,17 @@ public class MGMenuController: UIViewController {
 extension MGMenuController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableCell(withIdentifier: "MenuHeaderViewCell") as? MenuHeaderViewCell else {
+        guard let header = tableView.dequeueReusableCell(withIdentifier: "MGMenuHeaderCell") as? MGMenuHeaderCell else {
             return UITableViewCell()
         }
         
+        header.contentView.backgroundColor = layout.backgroundColor
+        header.backgroundColor = layout.backgroundColor
+
+        header.titleLabel.font = layout.font
         header.titleLabel.text = headerTitle
         header.iconImageView.image = headerIcon
 
-//        header.contentView.backgroundColor = MGGeneral.NavBar.Theme.dark
-//        header.backgroundColor = MGGeneral.NavBar.Theme.dark
         return header
     }
     
@@ -84,13 +84,18 @@ extension MGMenuController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = data[indexPath.row]
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuItemCell") as? MenuItemCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGMenuItemCell") as? MGMenuItemCell else {
             return UITableViewCell()
         }
+        
+        cell.contentView.backgroundColor = layout.backgroundColor
+        cell.backgroundColor = layout.backgroundColor
+
         cell.titleLabel.text = item.title
         cell.iconImageView.image = item.icon
         cell.iconImageView.isHidden = item.icon == nil
-        cell.titleLabel.textColor = .white
+        cell.titleLabel.textColor = layout.tintColor
+        
         return cell
     }
 }
@@ -100,76 +105,5 @@ extension MGMenuController: UITableViewDelegate {
         let item = data[indexPath.row]
         self.sideMenuController?.hideMenu()
         didSelectMenuDataAtIndexPath(item, indexPath)
-    }
-}
-
-///// :nodoc:
-//extension MGMenuController: SideMenuControllerDelegate {
-//
-//    public func sideMenuControllerDidHideMneu(_ sideMenuController: SideMenuController) {
-//
-//    }
-//
-//    public func sideMenuControllerWillHideMenu(_ sideMenuController: SideMenuController) {
-//
-//    }
-//
-//    public func sideMenuControllerWillRevealMenu(_ sideMenuController: SideMenuController) {
-//
-//    }
-//
-//    public func sideMenuControllerDidRevealMenu(_ sideMenuController: SideMenuController) {
-//
-//    }
-//
-//    public func sideMenuController(_ sideMenuController: SideMenuController, didShow viewController: UIViewController, animated: Bool) {
-//
-//    }
-//
-//    public func sideMenuController(_ sideMenuController: SideMenuController, willShow viewController: UIViewController, animated: Bool) {
-//
-//    }
-//
-//    public func sideMenuController(_ sideMenuController: SideMenuController, animationControllerFrom fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return BasicTransitionAnimator(options: .transitionFlipFromLeft, duration: 0.6)
-//    }
-//
-//}
-
-/// :nodoc:
-class MenuHeaderViewCell: UITableViewCell {
-    @IBOutlet var iconImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        iconImageView.layer.cornerRadius = 3
-        iconImageView.clipsToBounds = true
-//        titleLabel.font = MGGeneral.Font.bold(size: 20.0)
-    }
-}
-
-/// :nodoc:
-class MenuItemCell: UITableViewCell {
-    @IBOutlet var iconImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-//        contentView.backgroundColor = MGGeneral.NavBar.Theme.dark
-//        backgroundColor = MGGeneral.NavBar.Theme.dark
-    }
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        titleLabel.font = MGGeneral.Font.medium(size: 16.0)
-        iconImageView.layer.cornerRadius = 1
-    }
-}
-
-/// :nodoc:
-class MenuFooterViewCell: UITableViewCell {
-    @IBOutlet var titleLabel: UILabel!
-    override func awakeFromNib() {
-        super.awakeFromNib()
-//        contentView.backgroundColor = MGGeneral.NavBar.Theme.dark
-//        backgroundColor = MGGeneral.NavBar.Theme.dark
     }
 }

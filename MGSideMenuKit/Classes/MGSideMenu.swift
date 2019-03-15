@@ -68,6 +68,7 @@ extension MGSideMenu {
         controller.headerTitle = dataSource.headerTitle
         controller.headerIcon = dataSource.headerIcon
         controller.data = dataSource.data
+        controller.layout = dataSource.layout
         controller.didSelectMenuDataAtIndexPath = { [unowned self] menuData, indexPath in
             self.delegate.didSelect(menudata: menuData, atIndexPath: indexPath)
         }

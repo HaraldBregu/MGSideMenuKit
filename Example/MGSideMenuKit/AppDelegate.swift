@@ -8,6 +8,7 @@
 
 import UIKit
 import MGSideMenuKit
+import MGTemplateKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -55,7 +56,7 @@ extension AppDelegate {
 }
 
 class SideMenuDataSource: MGSideMenuDataSource {
-   
+    
     var headerTitle: String {
         return "MegaGeneral"
     }
@@ -77,7 +78,7 @@ class SideMenuDataSource: MGSideMenuDataSource {
         newData.append(item0)
         newData.append(item0)
         newData.append(item0)
-
+        
         return newData
     }
     
@@ -90,9 +91,10 @@ class SideMenuDataSource: MGSideMenuDataSource {
         }
     }
     
-    var design: MGSideMenuLayout {
-        
-        return MGSideMenuLayout()
+    var layout: MGSideMenuLayout {
+        let layout = MGSideMenuLayout()
+        layout.backgroundColor = MGTemplate.View.backgroundColor
+        return layout
     }
 }
 

@@ -1,0 +1,6 @@
+framework module MGTemplateKit {
+  umbrella header "MGTemplateKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
