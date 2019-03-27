@@ -27,8 +27,9 @@ import Foundation
 
 public protocol MGSideMenuDataSource {
     var headerTitle:String { get }
-    var headerIcon:UIImage { get }
+    var headerIcon:UIImage? { get }
     var data:[MGSideMenuData] { get }
     var layout:MGSideMenuLayout { get }
+    var primaryController:UIViewController? { get }
 }
 

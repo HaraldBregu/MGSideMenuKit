@@ -41,12 +41,16 @@ public class MGSideMenu {
         SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
         SideMenuController.preferences.basic.defaultCacheKey = "0"
 
-        self.controller = _controller
+        self.containerController = _containerController
+        self.menuController = _menuController
+        self.centerController = _centerController
     }
     
-    public var controller: SideMenuController!
-    public var dataSource: MGSideMenuDataSource!
-    public var delegate: MGSideMenuDataDelegate!
+    public var containerController: SideMenuController!
+    private var menuController: MGMenuController!
+    private var centerController: MGCenterController!
+    private var dataSource: MGSideMenuDataSource!
+    private var delegate: MGSideMenuDataDelegate!
 }
 
 fileprivate let storyboardName = "MGSideMenu"
@@ -55,10 +59,10 @@ fileprivate let centerViewControllerIdentifier = "MGCenterController"
 
 extension MGSideMenu {
     
-    // MARK - Controller
+    // MARK - ContainerController
 
-    private var _controller: SideMenuController? {
-        return SideMenuController(contentViewController: _centerController, menuViewController: _menuController)
+    private var _containerController: SideMenuController? {
+        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
     }
     
     // MARK - MenuController
@@ -71,6 +75,9 @@ extension MGSideMenu {
         controller.layout = dataSource.layout
         controller.didSelectMenuDataAtIndexPath = { [unowned self] menuData, indexPath in
             self.delegate.didSelect(menudata: menuData, atIndexPath: indexPath)
+        }
+        controller.canHideMenuDataAtIndexPath = { [unowned self] (menuData, indexPath) -> Bool in
+            return self.delegate.canCloseMenuWith(menudata: menuData, atIndexPath: indexPath)
         }
         return controller
     }

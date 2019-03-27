@@ -1,7 +1,7 @@
 // 
-//  MGSideMenuData.swift
+//  CenterController.swift
 //
-//  Created by harald bregu on 11/03/2019.
+//  Created by harald bregu on 27/03/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,16 +23,29 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public class MGSideMenuData {
-    public var title:String!
-    public var icon:UIImage?
-    public var indicatorIcon:UIImage?
-    public var identifier:String!
-    public var data:Any?
-    
-    public init() {
-        
+class CenterController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
     }
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
+        self.sideMenuController?.revealMenu()
+    }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
 }

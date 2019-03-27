@@ -29,11 +29,12 @@ import SideMenuSwift
 public class MGMenuController: UIViewController {
     @IBOutlet var tableView: UITableView!
     var headerTitle: String!
-    var headerIcon: UIImage!
+    var headerIcon: UIImage?
     var data:[MGSideMenuData] = []
     var layout:MGSideMenuLayout!
 
     var didSelectMenuDataAtIndexPath:((MGSideMenuData, IndexPath) -> ())!
+    var canHideMenuDataAtIndexPath:((MGSideMenuData, IndexPath) -> (Bool))!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +53,8 @@ public class MGMenuController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
     }
+    
 }
 
 /// :nodoc:
@@ -67,9 +68,11 @@ extension MGMenuController: UITableViewDataSource {
         header.contentView.backgroundColor = layout.backgroundColor
         header.backgroundColor = layout.backgroundColor
 
+        header.iconImageView.isHidden = headerIcon == nil
+        header.iconImageView.image = headerIcon
+
         header.titleLabel.font = layout.font
         header.titleLabel.text = headerTitle
-        header.iconImageView.image = headerIcon
 
         return header
     }
@@ -83,17 +86,19 @@ extension MGMenuController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = data[indexPath.row]
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGMenuItemCell") as? MGMenuItemCell else {
             return UITableViewCell()
         }
-        
+
+        let item = data[indexPath.row]
+
         cell.contentView.backgroundColor = layout.backgroundColor
         cell.backgroundColor = layout.backgroundColor
 
-        cell.titleLabel.text = item.title
-        cell.iconImageView.image = item.icon
         cell.iconImageView.isHidden = item.icon == nil
+        cell.iconImageView.image = item.icon
+
+        cell.titleLabel.text = item.title
         cell.titleLabel.textColor = layout.tintColor
         
         return cell
@@ -103,7 +108,9 @@ extension MGMenuController: UITableViewDataSource {
 extension MGMenuController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = data[indexPath.row]
-        self.sideMenuController?.hideMenu()
         didSelectMenuDataAtIndexPath(item, indexPath)
+        if canHideMenuDataAtIndexPath(item, indexPath) {
+            self.sideMenuController?.hideMenu()
+        }
     }
 }

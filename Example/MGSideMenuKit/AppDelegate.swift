@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var sideMenu:MGSideMenu!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        MGTemplate.setup()
         window = UIWindow(frame: UIScreen.main.bounds)
         sideMenu = MGSideMenu(dataSource: SideMenuDataSource(), delegate: SideMenuDelegate())
         window?.rootViewController = _rootController
@@ -50,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate {
     
     private var _rootController:UIViewController {
-        return sideMenu.controller
+        return sideMenu.containerController
     }
     
 }
@@ -61,34 +62,41 @@ class SideMenuDataSource: MGSideMenuDataSource {
         return "MegaGeneral"
     }
     
-    var headerIcon: UIImage {
-        return UIImage()
+    var headerIcon: UIImage? {
+        return nil
     }
     
     var data: [MGSideMenuData] {
         var newData = [MGSideMenuData]()
         
-        let item0 = MGSideMenuData()
-        item0.title = "Home"
-        item0.selected = true
-        item0.icon = UIImage()
-        item0.indicatorIcon = UIImage()
-        item0.identifier = "home.identifier"
+        let homeItem = MGSideMenuData()
+        homeItem.title = "Home"
+        homeItem.icon = UIImage(icon: .ionicons(IoniconsType.androidHome), size: CGSize(width: 30, height: 30), textColor: .white, backgroundColor: .clear)
+        homeItem.indicatorIcon = UIImage()
+        homeItem.identifier = "menu.home.identifier"
+        newData.append(homeItem)
         
-        newData.append(item0)
-        newData.append(item0)
-        newData.append(item0)
+        let videoItem = MGSideMenuData()
+        videoItem.title = "Video"
+        videoItem.icon = UIImage(icon: .ionicons(IoniconsType.androidFilm), size: CGSize(width: 30, height: 30), textColor: .white)
+        videoItem.indicatorIcon = UIImage()
+        videoItem.identifier = "menu.video.identifier"
+        newData.append(videoItem)
+        
+        let audioItem = MGSideMenuData()
+        audioItem.title = "Audio"
+        audioItem.icon = UIImage(icon: .ionicons(IoniconsType.musicNote), size: CGSize(width: 30, height: 30), textColor: .white)
+        audioItem.indicatorIcon = UIImage()
+        audioItem.identifier = "menu.audio.identifier"
+        newData.append(audioItem)
         
         return newData
     }
     
-    func controller(forData data: MGSideMenuData) -> UIViewController {
-        switch data.identifier {
-        case "home.identifier":
-            return UIViewController()
-        default:
-            return UIViewController()
-        }
+    var primaryController: UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let controller = storyboard.instantiateViewController(withIdentifier: "CenterController")
+        return controller
     }
     
     var layout: MGSideMenuLayout {
@@ -99,10 +107,13 @@ class SideMenuDataSource: MGSideMenuDataSource {
 }
 
 class SideMenuDelegate: MGSideMenuDataDelegate {
-    
+   
+    func canCloseMenuWith(menudata: MGSideMenuData, atIndexPath indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0
+    }
+   
     func didSelect(menudata: MGSideMenuData, atIndexPath indexPath: IndexPath) {
-        print("menudata: \(menudata.title)")
-        print("indexpath: \(indexPath.row)")
+        
     }
     
 }
