@@ -73,11 +73,14 @@ extension MGSideMenu {
         controller.headerIcon = dataSource.headerIcon
         controller.data = dataSource.data
         controller.layout = dataSource.layout
-        controller.didSelectMenuDataAtIndexPath = { [unowned self] menuData, indexPath in
-            self.delegate.didSelect(menudata: menuData, atIndexPath: indexPath)
+        controller.didSelectMenuDataAtIndexPath = { [unowned self] (controller, data, indexPath) in
+            self.delegate.menuController(controller, didSelectData:data, atIndexPath:indexPath)
         }
-        controller.canHideMenuDataAtIndexPath = { [unowned self] (menuData, indexPath) -> Bool in
-            return self.delegate.canCloseMenuWith(menudata: menuData, atIndexPath: indexPath)
+        controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
+            return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
+        }
+        controller.controllerForIndexPath = { [unowned self] (controller, indexPath) -> UIViewController? in
+            return self.dataSource.centerController(forIndexPath: indexPath)
         }
         return controller
     }

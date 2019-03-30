@@ -33,12 +33,13 @@ public class MGMenuController: UIViewController {
     var data:[MGSideMenuData] = []
     var layout:MGSideMenuLayout!
 
-    var didSelectMenuDataAtIndexPath:((MGSideMenuData, IndexPath) -> ())!
-    var canHideMenuDataAtIndexPath:((MGSideMenuData, IndexPath) -> (Bool))!
+    var didSelectMenuDataAtIndexPath:((MGMenuController, MGSideMenuData, IndexPath) -> ())!
+    var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
+    var controllerForIndexPath:((MGMenuController, IndexPath) -> (UIViewController?))!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-        
+
         view.backgroundColor = layout.backgroundColor
         navigationController?.isNavigationBarHidden = true
         tableView.rowHeight = UITableView.automaticDimension
@@ -106,11 +107,19 @@ extension MGMenuController: UITableViewDataSource {
 }
 
 extension MGMenuController: UITableViewDelegate {
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
         let item = data[indexPath.row]
-        didSelectMenuDataAtIndexPath(item, indexPath)
-        if canHideMenuDataAtIndexPath(item, indexPath) {
-            self.sideMenuController?.hideMenu()
+        
+        didSelectMenuDataAtIndexPath(self, item, indexPath)
+        if canCloseMenuAtIndexPath(self, indexPath) {
+            sideMenuController?.hideMenu()
         }
+
+        if let controller = controllerForIndexPath(self, indexPath) {
+            sideMenuController?.setContentViewController(to: controller, animated: true, completion: nil)
+        }
+
     }
 }

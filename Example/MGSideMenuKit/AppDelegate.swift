@@ -104,16 +104,32 @@ class SideMenuDataSource: MGSideMenuDataSource {
         layout.backgroundColor = MGTemplate.View.backgroundColor
         return layout
     }
+    
+    func centerController(forIndexPath indexPath: IndexPath) -> UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+
+        switch indexPath.row {
+        case 0:
+            return nil
+        case 1:
+            return storyboard.instantiateViewController(withIdentifier: "vc1")
+        case 2:
+            return storyboard.instantiateViewController(withIdentifier: "vc2")
+        default:
+            return nil
+        }
+    }
+    
 }
 
 class SideMenuDelegate: MGSideMenuDataDelegate {
-   
-    func canCloseMenuWith(menudata: MGSideMenuData, atIndexPath indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0
-    }
-   
-    func didSelect(menudata: MGSideMenuData, atIndexPath indexPath: IndexPath) {
+    
+    func menuController(_ controller: MGMenuController, didSelectData data: MGSideMenuData, atIndexPath indexPath: IndexPath) {
         
+    }
+    
+    func menuController(_ controller: MGMenuController, canCloseMenuAtIndexPath indexPath: IndexPath) -> Bool {
+        return indexPath.row != 0 && indexPath.row != 1
     }
     
 }
