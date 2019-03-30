@@ -105,7 +105,7 @@ class SideMenuDataSource: MGSideMenuDataSource {
         return layout
     }
     
-    func centerController(forIndexPath indexPath: IndexPath) -> UIViewController? {
+    func centerController(data: MGSideMenuData, forIndexPath indexPath: IndexPath) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
 
         switch indexPath.row {

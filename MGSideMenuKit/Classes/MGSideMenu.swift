@@ -79,8 +79,8 @@ extension MGSideMenu {
         controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
             return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
         }
-        controller.controllerForIndexPath = { [unowned self] (controller, indexPath) -> UIViewController? in
-            return self.dataSource.centerController(forIndexPath: indexPath)
+        controller.controllerForIndexPath = { [unowned self] (controller, data, indexPath) -> UIViewController? in
+            return self.dataSource.centerController(data: data, forIndexPath: indexPath)
         }
         return controller
     }

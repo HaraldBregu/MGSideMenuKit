@@ -35,7 +35,7 @@ public class MGMenuController: UIViewController {
 
     var didSelectMenuDataAtIndexPath:((MGMenuController, MGSideMenuData, IndexPath) -> ())!
     var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
-    var controllerForIndexPath:((MGMenuController, IndexPath) -> (UIViewController?))!
+    var controllerForIndexPath:((MGMenuController, MGSideMenuData, IndexPath) -> (UIViewController?))!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -109,7 +109,6 @@ extension MGMenuController: UITableViewDataSource {
 extension MGMenuController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
         let item = data[indexPath.row]
         
         didSelectMenuDataAtIndexPath(self, item, indexPath)
@@ -117,8 +116,8 @@ extension MGMenuController: UITableViewDelegate {
             sideMenuController?.hideMenu()
         }
 
-        if let controller = controllerForIndexPath(self, indexPath) {
-            sideMenuController?.setContentViewController(to: controller, animated: true, completion: nil)
+        if let controller = controllerForIndexPath(self, item, indexPath) {
+            sideMenuController?.setContentViewController(to: controller, animated: false, completion: nil)
         }
 
     }
