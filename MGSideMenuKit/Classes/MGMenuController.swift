@@ -118,6 +118,9 @@ extension MGMenuController: UITableViewDelegate {
 
         if let controller = controllerForIndexPath(self, item, indexPath) {
             sideMenuController?.setContentViewController(to: controller, animated: false, completion: nil)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                self.splitViewController?.viewControllers[1] = controller
+            }
         }
 
     }

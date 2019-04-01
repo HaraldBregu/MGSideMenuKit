@@ -46,23 +46,36 @@ public class MGSideMenu {
         self.centerController = _centerController
     }
     
-    public var containerController: SideMenuController!
+    public var containerController: UIViewController!
     private var menuController: MGMenuController!
     private var centerController: MGCenterController!
     private var dataSource: MGSideMenuDataSource!
     private var delegate: MGSideMenuDataDelegate!
 }
 
-fileprivate let storyboardName = "MGSideMenu"
-fileprivate let menuViewControllerIdentifier = "MGMenuController"
-fileprivate let centerViewControllerIdentifier = "MGCenterController"
-
 extension MGSideMenu {
     
     // MARK - ContainerController
 
-    private var _containerController: SideMenuController? {
-        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+    private var _containerController: UIViewController? {
+        
+        switch UIDevice.current.userInterfaceIdiom {
+        case .unspecified:
+            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+        case .phone:
+            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+        case .pad:
+            let splitViewController = UISplitViewController()
+            splitViewController.maximumPrimaryColumnWidth = 240
+            splitViewController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
+            return splitViewController
+        case .tv:
+            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+        case .carPlay:
+            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+        }
+        
+//        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
     }
     
     // MARK - MenuController
@@ -111,8 +124,16 @@ extension MGSideMenu {
     }
     
     private var _storyboardBundle:Bundle {
-        return Bundle(for: MGSideMenu.self)
+        let podBundle = Bundle(for: MGSideMenu.self)
+        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
+        let bundle = Bundle(url: bundleURL!)!
+        return bundle
     }
-    
+
 }
 
+fileprivate let storyboardName = "MGSideMenu"
+fileprivate let menuViewControllerIdentifier = "MGMenuController"
+fileprivate let centerViewControllerIdentifier = "MGCenterController"
+fileprivate let resourceName = "MGSideMenuKit"
+fileprivate let resourceExtension = "bundle"
