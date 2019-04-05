@@ -1,6 +1,6 @@
 PODS:
   - FontBlaster (4.1.0)
-  - MGSideMenuKit (0.1.4):
+  - MGSideMenuKit (0.1.6):
     - SideMenuSwift
   - MGTemplateKit (0.1.7):
     - FontBlaster
@@ -31,7 +31,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
-  MGSideMenuKit: 6d35102cc9d4e3262a66f6086c068bd46ac3e0ba
+  MGSideMenuKit: 4cdadacfa4bf8184e7eecad1ada0e831800a99f9
   MGTemplateKit: 8ccf7019c7411698e55b35ee9f6fd0050dbb431d
   SideMenuSwift: a78d47182aa03b5c07570fe57d3ba22c4561f2ce
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145

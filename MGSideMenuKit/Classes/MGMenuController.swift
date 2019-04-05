@@ -28,14 +28,17 @@ import SideMenuSwift
 
 public class MGMenuController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    var headerTitle: String!
-    var headerIcon: UIImage?
-    var data:[MGSideMenuData] = []
+    
+    var data:MGSideMenuData!
+    var items:[MGSideMenuItem] = []
     var layout:MGSideMenuLayout!
 
-    var didSelectMenuDataAtIndexPath:((MGMenuController, MGSideMenuData, IndexPath) -> ())!
+    var headerTitle: String!
+    var headerIcon: UIImage?
+
+    var didSelectMenuItemAtIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> ())!
     var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
-    var controllerForIndexPath:((MGMenuController, MGSideMenuData, IndexPath) -> (UIViewController?))!
+    var controllerForIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> (UIViewController?))!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +57,13 @@ public class MGMenuController: UIViewController {
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
     }
-    
+
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+
 }
 
 /// :nodoc:
@@ -69,21 +77,21 @@ extension MGMenuController: UITableViewDataSource {
         header.contentView.backgroundColor = layout.backgroundColor
         header.backgroundColor = layout.backgroundColor
 
-        header.iconImageView.isHidden = headerIcon == nil
-        header.iconImageView.image = headerIcon
+        header.iconImageView.isHidden = data.image == nil
+        header.iconImageView.image = data.image
 
         header.titleLabel.font = layout.font
-        header.titleLabel.text = headerTitle
+        header.titleLabel.text = data.title
 
         return header
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 80
+        return 50
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return items.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,7 +99,7 @@ extension MGMenuController: UITableViewDataSource {
             return UITableViewCell()
         }
 
-        let item = data[indexPath.row]
+        let item = items[indexPath.row]
 
         cell.contentView.backgroundColor = layout.backgroundColor
         cell.backgroundColor = layout.backgroundColor
@@ -109,9 +117,9 @@ extension MGMenuController: UITableViewDataSource {
 extension MGMenuController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = data[indexPath.row]
+        let item = items[indexPath.row]
         
-        didSelectMenuDataAtIndexPath(self, item, indexPath)
+        didSelectMenuItemAtIndexPath(self, item, indexPath)
         if canCloseMenuAtIndexPath(self, indexPath) {
             sideMenuController?.hideMenu()
         }

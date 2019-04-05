@@ -57,46 +57,36 @@ extension AppDelegate {
 }
 
 class SideMenuDataSource: MGSideMenuDataSource {
-    
-    var headerTitle: String {
-        return "MegaGeneral"
+   
+    var data: MGSideMenuData {
+        let data = MGSideMenuData()
+        data.title = "Megageneral Inc."
+        data.image = #imageLiteral(resourceName: "MGIconLight")
+        return data
     }
     
-    var headerIcon: UIImage? {
-        return nil
-    }
-    
-    var data: [MGSideMenuData] {
-        var newData = [MGSideMenuData]()
+    var items: [MGSideMenuItem] {
+        var newData = [MGSideMenuItem]()
         
-        let homeItem = MGSideMenuData()
+        let homeItem = MGSideMenuItem()
         homeItem.title = "Home"
         homeItem.icon = UIImage(icon: .ionicons(IoniconsType.androidHome), size: CGSize(width: 30, height: 30), textColor: .white, backgroundColor: .clear)
-        homeItem.indicatorIcon = UIImage()
         homeItem.identifier = "menu.home.identifier"
         newData.append(homeItem)
         
-        let videoItem = MGSideMenuData()
+        let videoItem = MGSideMenuItem()
         videoItem.title = "Video"
         videoItem.icon = UIImage(icon: .ionicons(IoniconsType.androidFilm), size: CGSize(width: 30, height: 30), textColor: .white)
-        videoItem.indicatorIcon = UIImage()
         videoItem.identifier = "menu.video.identifier"
         newData.append(videoItem)
         
-        let audioItem = MGSideMenuData()
+        let audioItem = MGSideMenuItem()
         audioItem.title = "Audio"
         audioItem.icon = UIImage(icon: .ionicons(IoniconsType.musicNote), size: CGSize(width: 30, height: 30), textColor: .white)
-        audioItem.indicatorIcon = UIImage()
         audioItem.identifier = "menu.audio.identifier"
         newData.append(audioItem)
         
         return newData
-    }
-    
-    var primaryController: UIViewController? {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let controller = storyboard.instantiateViewController(withIdentifier: "CenterController")
-        return controller
     }
     
     var layout: MGSideMenuLayout {
@@ -104,10 +94,16 @@ class SideMenuDataSource: MGSideMenuDataSource {
         layout.backgroundColor = MGTemplate.View.backgroundColor
         return layout
     }
-    
-    func centerController(data: MGSideMenuData, forIndexPath indexPath: IndexPath) -> UIViewController? {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
 
+    var primaryController: UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let controller = storyboard.instantiateViewController(withIdentifier: "CenterController")
+        return controller
+    }
+
+    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath) -> UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        
         switch indexPath.row {
         case 0:
             return nil
@@ -119,13 +115,12 @@ class SideMenuDataSource: MGSideMenuDataSource {
             return nil
         }
     }
-    
 }
 
 class SideMenuDelegate: MGSideMenuDataDelegate {
     
-    func menuController(_ controller: MGMenuController, didSelectData data: MGSideMenuData, atIndexPath indexPath: IndexPath) {
-        
+    func menuController(_ controller: MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) {
+
     }
     
     func menuController(_ controller: MGMenuController, canCloseMenuAtIndexPath indexPath: IndexPath) -> Bool {

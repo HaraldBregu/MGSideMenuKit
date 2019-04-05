@@ -1,7 +1,7 @@
 // 
-//  MGSideMenuData.swift
+//  MGSplitController.swift
 //
-//  Created by harald bregu on 11/03/2019.
+//  Created by harald bregu on 05/04/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,14 +23,17 @@
 //  THE SOFTWARE.
 //
 
-import Foundation
+import UIKit
 
-public class MGSideMenuData {
-    public var title:String!
-    public var image:UIImage?
+public class MGSplitController: UISplitViewController {
 
-    public init() {
-        title = "Landing Title"
-        image = UIImage()
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+
     }
+    
+    override public var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }

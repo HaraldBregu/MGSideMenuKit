@@ -26,6 +26,6 @@
 import Foundation
 
 public protocol MGSideMenuDataDelegate {
-    func menuController(_ controller:MGMenuController, didSelectData data:MGSideMenuData, atIndexPath indexPath:IndexPath)
+    func menuController(_ controller:MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath:IndexPath)
     func menuController(_ controller:MGMenuController, canCloseMenuAtIndexPath indexPath:IndexPath) -> Bool
 }

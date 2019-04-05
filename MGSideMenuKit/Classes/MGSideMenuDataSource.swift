@@ -26,11 +26,10 @@
 import Foundation
 
 public protocol MGSideMenuDataSource {
-    var headerTitle:String { get }
-    var headerIcon:UIImage? { get }
-    var data:[MGSideMenuData] { get }
+    var data:MGSideMenuData { get }
+    var items:[MGSideMenuItem] { get }
     var layout:MGSideMenuLayout { get }
     var primaryController:UIViewController? { get }
-    func centerController(data:MGSideMenuData, forIndexPath indexPath:IndexPath) -> UIViewController?
+    func centerController(item:MGSideMenuItem, forIndexPath indexPath:IndexPath) -> UIViewController?
 }
 

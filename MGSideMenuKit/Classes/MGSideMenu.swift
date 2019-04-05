@@ -65,35 +65,39 @@ extension MGSideMenu {
         case .phone:
             return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
         case .pad:
-            let splitViewController = UISplitViewController()
-            splitViewController.maximumPrimaryColumnWidth = 240
-            splitViewController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
-            return splitViewController
+            let splitController = _splitController
+            splitController.maximumPrimaryColumnWidth = 240
+            splitController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
+            return splitController
         case .tv:
             return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
         case .carPlay:
             return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
         }
-        
-//        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+    }
+    
+    // MARK - SplitController
+    
+    private var _splitController: MGSplitController {
+        guard let splitController = _storyboard.instantiateViewController(withIdentifier: "MGSplitController") as? MGSplitController else { return MGSplitController() }
+        return splitController
     }
     
     // MARK - MenuController
 
     private var _menuController: MGMenuController {
         guard let controller = _menuViewController else { return MGMenuController() }
-        controller.headerTitle = dataSource.headerTitle
-        controller.headerIcon = dataSource.headerIcon
         controller.data = dataSource.data
+        controller.items = dataSource.items
         controller.layout = dataSource.layout
-        controller.didSelectMenuDataAtIndexPath = { [unowned self] (controller, data, indexPath) in
-            self.delegate.menuController(controller, didSelectData:data, atIndexPath:indexPath)
+        controller.didSelectMenuItemAtIndexPath = { [unowned self] (controller, item, indexPath) in
+            self.delegate.menuController(controller, didSelectItem:item, atIndexPath:indexPath)
         }
         controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
             return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
         }
-        controller.controllerForIndexPath = { [unowned self] (controller, data, indexPath) -> UIViewController? in
-            return self.dataSource.centerController(data: data, forIndexPath: indexPath)
+        controller.controllerForIndexPath = { [unowned self] (controller, item, indexPath) -> UIViewController? in
+            return self.dataSource.centerController(item: item, forIndexPath: indexPath)
         }
         return controller
     }
@@ -137,3 +141,4 @@ fileprivate let menuViewControllerIdentifier = "MGMenuController"
 fileprivate let centerViewControllerIdentifier = "MGCenterController"
 fileprivate let resourceName = "MGSideMenuKit"
 fileprivate let resourceExtension = "bundle"
+

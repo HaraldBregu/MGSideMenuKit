@@ -30,12 +30,15 @@ public class MGCenterController: UIViewController {
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .red
     }
 
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         self.sideMenuController?.revealMenu()
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
