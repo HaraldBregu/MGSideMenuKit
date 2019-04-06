@@ -37,7 +37,7 @@ public class MGSideMenu {
         SideMenuController.preferences.basic.position = .under
         SideMenuController.preferences.basic.direction = .left
         SideMenuController.preferences.basic.enablePanGesture = true
-        SideMenuController.preferences.basic.supportedOrientations = .all
+        SideMenuController.preferences.basic.supportedOrientations = .portrait
         SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
         SideMenuController.preferences.basic.defaultCacheKey = "0"
 
@@ -51,6 +51,7 @@ public class MGSideMenu {
     private var centerController: MGCenterController!
     private var dataSource: MGSideMenuDataSource!
     private var delegate: MGSideMenuDataDelegate!
+    
 }
 
 extension MGSideMenu {
@@ -61,32 +62,37 @@ extension MGSideMenu {
         
         switch UIDevice.current.userInterfaceIdiom {
         case .unspecified:
-            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+            return _sideController
         case .phone:
-            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+            return _sideController
         case .pad:
-            let splitController = _splitController
-            splitController.maximumPrimaryColumnWidth = 240
-            splitController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
-            return splitController
+            return _splitController
         case .tv:
-            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+            return _sideController
         case .carPlay:
-            return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+            return _sideController
         }
     }
     
     // MARK - SplitController
     
+    private var _sideController: SideMenuController {
+        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+    }
+
+    // MARK - SplitController
+    
     private var _splitController: MGSplitController {
         guard let splitController = _storyboard.instantiateViewController(withIdentifier: "MGSplitController") as? MGSplitController else { return MGSplitController() }
+        splitController.maximumPrimaryColumnWidth = 240
+        splitController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
         return splitController
     }
     
     // MARK - MenuController
 
     private var _menuController: MGMenuController {
-        guard let controller = _menuViewController else { return MGMenuController() }
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController else { return MGMenuController() }
         controller.data = dataSource.data
         controller.items = dataSource.items
         controller.layout = dataSource.layout
@@ -102,29 +108,17 @@ extension MGSideMenu {
         return controller
     }
 
-    private var _menuViewController: MGMenuController? {
-        return _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController
-    }
-
     // MARK - CenterController
     
     private var _centerController: MGCenterController {
-        guard let controller = _centerViewController else { return MGCenterController() }
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: centerViewControllerIdentifier) as? MGCenterController else { return MGCenterController() }
         return controller
-    }
-
-    private var _centerViewController: MGCenterController? {
-        return _storyboard.instantiateViewController(withIdentifier: centerViewControllerIdentifier) as? MGCenterController
     }
     
     // MARK - Storyboard
     
     private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: _storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardName:String {
-        return storyboardName
+        return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
     }
     
     private var _storyboardBundle:Bundle {
@@ -142,3 +136,10 @@ fileprivate let centerViewControllerIdentifier = "MGCenterController"
 fileprivate let resourceName = "MGSideMenuKit"
 fileprivate let resourceExtension = "bundle"
 
+
+extension MGSplitController {
+    func toggleMasterView() {
+        let barButtonItem = self.displayModeButtonItem
+        UIApplication.shared.sendAction(barButtonItem.action!, to: barButtonItem.target, from: nil, for: nil)
+    }
+}

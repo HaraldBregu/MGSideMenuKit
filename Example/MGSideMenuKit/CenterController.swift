@@ -24,8 +24,9 @@
 //
 
 import UIKit
+import MGSideMenuKit
 
-class CenterController: UIViewController {
+class CenterController: UIViewController, MGSideMenuProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,9 @@ class CenterController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         
-        self.sideMenuController?.revealMenu()
+//        self.sideMenuController?.revealMenu()
+        
+        self.showMenu()
     }
 
     /*
