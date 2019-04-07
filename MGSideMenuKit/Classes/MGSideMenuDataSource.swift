@@ -29,7 +29,7 @@ public protocol MGSideMenuDataSource {
     var data:MGSideMenuData { get }
     var items:[MGSideMenuItem] { get }
     var layout:MGSideMenuLayout { get }
-    var primaryController:UIViewController? { get }
-    func centerController(item:MGSideMenuItem, forIndexPath indexPath:IndexPath) -> UIViewController?
+    func primaryCenterController(fromController controller:MGMenuController) -> UIViewController
+    func centerController(item:MGSideMenuItem, forIndexPath indexPath:IndexPath, fromController controller:MGMenuController) -> UIViewController?
 }
 

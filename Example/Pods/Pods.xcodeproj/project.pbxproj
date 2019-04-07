@@ -15,7 +15,6 @@
 		0FB9B5029EF571473F3AAED133F41A92 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2D15CECD767BE0D0754FB08055D01B /* Preferences.swift */; };
 		14BF5B4F6B946E120FF439D713AD6370 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CD121A3D2C6B2DB998CD6D9EBA009C6 /* Roboto-Black.ttf */; };
 		1522F6E490D6854989512CDEA9F352C9 /* Ionicons.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D24B73BFA5EB8A24E0B4B391D8E570 /* Ionicons.swift */; };
-		194AFFEA52F30609D1E252ECDC7A2890 /* MGCenterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCBA54A9E77934239F56885358A4486E /* MGCenterController.swift */; };
 		1C655E19E612A43B5D491DCCB81C0581 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3BD77EE1DEA4E4DD9FA0C692938D0393 /* Roboto-ThinItalic.ttf */; };
 		1CB40858050004A4E28BB216C5DC17C7 /* BasicTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB7D39999406099696DDB36101A7F61E /* BasicTransitionAnimator.swift */; };
 		1DDE4B2CBCA0DD1C384AED8EE01F1108 /* FontBlaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8C48294B29296BB26A818F60744B11F /* FontBlaster.framework */; };
@@ -284,7 +283,6 @@
 		F9D2177BE51308235E19C91A38B30244 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FA9B88B5A25CF47777FC78156B7896FF /* MGTemplate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGTemplate.swift; path = MGTemplateKit/Classes/MGTemplate.swift; sourceTree = "<group>"; };
 		FB7D39999406099696DDB36101A7F61E /* BasicTransitionAnimator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BasicTransitionAnimator.swift; path = SideMenu/BasicTransitionAnimator.swift; sourceTree = "<group>"; };
-		FCBA54A9E77934239F56885358A4486E /* MGCenterController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGCenterController.swift; path = MGSideMenuKit/Classes/MGCenterController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -494,11 +492,10 @@
 		749A7203470616CCC42453447B276FDD /* MGSideMenuKit */ = {
 			isa = PBXGroup;
 			children = (
-				FCBA54A9E77934239F56885358A4486E /* MGCenterController.swift */,
+				AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenu.swift */,
 				5B7A38658E80E1D93D50C8389856A520 /* MGMenuController.swift */,
 				A11EB4A2819F15B0036E21C3C0E23A62 /* MGMenuHeaderCell.swift */,
 				C1B2389DC308009FE6AD2A64481E057D /* MGMenuItemCell.swift */,
-				AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenu.swift */,
 				25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenuData.swift */,
 				EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuDataDelegate.swift */,
 				C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuDataSource.swift */,
@@ -975,7 +972,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				194AFFEA52F30609D1E252ECDC7A2890 /* MGCenterController.swift in Sources */,
 				561067B820F75BB7E18584A89A23FE18 /* MGMenuController.swift in Sources */,
 				2C63E5DAAF1CF047CAF55B7E08807F86 /* MGMenuHeaderCell.swift in Sources */,
 				ECECD8A2E22A40165B8C54B27B0C254C /* MGMenuItemCell.swift in Sources */,

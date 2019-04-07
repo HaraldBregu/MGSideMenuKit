@@ -26,15 +26,12 @@
 import UIKit
 import SideMenuSwift
 
-public class MGMenuController: UIViewController {
+public class MGMenuController: UIViewController, MGSideMenuProtocol {
     @IBOutlet var tableView: UITableView!
     
     var data:MGSideMenuData!
     var items:[MGSideMenuItem] = []
     var layout:MGSideMenuLayout!
-
-    var headerTitle: String!
-    var headerIcon: UIImage?
 
     var didSelectMenuItemAtIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> ())!
     var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
@@ -63,10 +60,9 @@ public class MGMenuController: UIViewController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
 }
 
-/// :nodoc:
 extension MGMenuController: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -112,6 +108,7 @@ extension MGMenuController: UITableViewDataSource {
         
         return cell
     }
+    
 }
 
 extension MGMenuController: UITableViewDelegate {
@@ -130,6 +127,6 @@ extension MGMenuController: UITableViewDelegate {
                 self.splitViewController?.viewControllers[1] = controller
             }
         }
-
     }
+
 }

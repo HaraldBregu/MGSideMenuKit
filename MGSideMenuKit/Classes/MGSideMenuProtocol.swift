@@ -33,28 +33,72 @@ public protocol MGSideMenuProtocol {
 extension MGSideMenuProtocol where Self: UIViewController {
     
     public func showMenu() {
-        guard let parentController = self.parent else { return }
-        
-        if parentController.isKind(of: UINavigationController.self) {
-            guard let navigationController = parentController as? UINavigationController else { return }
-            guard let navigationControllerParent = navigationController.parent else { return }
+        print(self)
+        print(self.parent)
+
+        if let parentController = self.parent {
             
-            if navigationControllerParent.isKind(of: MGSplitController.self) {
-                guard let splitController = navigationControllerParent as? MGSplitController else { return }
+            if parentController.isKind(of: UINavigationController.self) {
+                guard let navigationController = parentController as? UINavigationController else { return }
+                guard let navigationControllerParent = navigationController.parent else { return }
+                
+                if navigationControllerParent.isKind(of: MGSplitController.self) {
+                    guard let splitController = navigationControllerParent as? MGSplitController else { return }
+                    self.use(controller: splitController)
+                }
+                else if navigationControllerParent.isKind(of: SideMenuController.self) {
+                    guard let sideMenuController = navigationControllerParent as? SideMenuController else { return }
+                    self.use(controller: sideMenuController)
+                }
+            }
+            else if parentController.isKind(of: MGSplitController.self) {
+                guard let splitController = parent as? MGSplitController else { return }
                 self.use(controller: splitController)
             }
-            else if navigationControllerParent.isKind(of: SideMenuController.self) {
-                guard let sideMenuController = navigationControllerParent as? SideMenuController else { return }
+            else if parentController.isKind(of: SideMenuController.self) {
+                guard let sideMenuController = parent as? SideMenuController else { return }
                 self.use(controller: sideMenuController)
             }
-        }
-        else if parentController.isKind(of: MGSplitController.self) {
-            guard let splitController = parent as? MGSplitController else { return }
-            self.use(controller: splitController)
-        }
-        else if parentController.isKind(of: SideMenuController.self) {
-            guard let sideMenuController = parent as? SideMenuController else { return }
-            self.use(controller: sideMenuController)
+        } else {
+            if self.isKind(of: UINavigationController.self) {
+                guard let navigationController = self as? UINavigationController else { return }
+                guard let navigationControllerParent = navigationController.parent else { return }
+                
+                if navigationControllerParent.isKind(of: MGSplitController.self) {
+                    guard let splitController = navigationControllerParent as? MGSplitController else { return }
+                    self.use(controller: splitController)
+                }
+                else if navigationControllerParent.isKind(of: SideMenuController.self) {
+                    guard let sideMenuController = navigationControllerParent as? SideMenuController else { return }
+                    self.use(controller: sideMenuController)
+                }
+            }
+            else if self.isKind(of: MGMenuController.self) {
+                if let parent = self.parent {
+//                    guard let navigationController = self as? UINavigationController else { return }
+//                    guard let navigationControllerParent = navigationController.parent else { return }
+                    
+                    if parent.isKind(of: MGSplitController.self) {
+                        guard let splitController = parent as? MGSplitController else { return }
+                        self.use(controller: splitController)
+                    }
+                    else if parent.isKind(of: SideMenuController.self) {
+                        guard let sideMenuController = parent as? SideMenuController else { return }
+                        self.use(controller: sideMenuController)
+                    }
+
+                } else {
+                    self.sideMenuController?.revealMenu()
+                }
+            }
+            else if self.isKind(of: MGSplitController.self) {
+                guard let splitController = parent as? MGSplitController else { return }
+                self.use(controller: splitController)
+            }
+            else if self.isKind(of: SideMenuController.self) {
+                guard let sideMenuController = parent as? SideMenuController else { return }
+                self.use(controller: sideMenuController)
+            }
         }
     }
     
@@ -67,4 +111,3 @@ extension MGSideMenuProtocol where Self: UIViewController {
     }
     
 }
-

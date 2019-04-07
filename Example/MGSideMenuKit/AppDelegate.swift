@@ -18,8 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         MGTemplate.setup()
         window = UIWindow(frame: UIScreen.main.bounds)
-        sideMenu = MGSideMenu(dataSource: SideMenuDataSource(), delegate: SideMenuDelegate())
-        window?.rootViewController = _rootController
+      
+        sideMenu = MGSideMenu()
+        sideMenu.dataSource = SideMenuDataSource(sideMenu: sideMenu)
+        sideMenu.delegate = SideMenuDelegate()
+
+        window?.rootViewController = sideMenu.containerController
         window?.makeKeyAndVisible()
         return true
     }
@@ -48,16 +52,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate {
-    
-    private var _rootController:UIViewController {
-        return sideMenu.containerController
-    }
-    
-}
+
+
+
+
+
+
 
 class SideMenuDataSource: MGSideMenuDataSource {
-   
+
+    init(sideMenu: MGSideMenu) {
+        print(sideMenu)
+    }
+    
     var data: MGSideMenuData {
         let data = MGSideMenuData()
         data.title = "Megageneral Inc."
@@ -95,22 +102,25 @@ class SideMenuDataSource: MGSideMenuDataSource {
         return layout
     }
 
-    var primaryController: UIViewController? {
+    func primaryCenterController(fromController controller: MGMenuController) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let controller = storyboard.instantiateViewController(withIdentifier: "CenterController")
-        return controller
+        let vc = storyboard.instantiateViewController(withIdentifier: "CenterController") as! CenterController
+        vc.presenterController = controller
+        return vc
     }
-
-    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath) -> UIViewController? {
+    
+    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath, fromController controller: MGMenuController) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        
+        let vc = storyboard.instantiateViewController(withIdentifier: "CenterController") as! CenterController
+        vc.presenterController = controller
+
         switch indexPath.row {
         case 0:
-            return nil
+            return vc
         case 1:
-            return storyboard.instantiateViewController(withIdentifier: "vc1")
+            return vc
         case 2:
-            return storyboard.instantiateViewController(withIdentifier: "vc2")
+            return vc
         default:
             return nil
         }
@@ -124,7 +134,8 @@ class SideMenuDelegate: MGSideMenuDataDelegate {
     }
     
     func menuController(_ controller: MGMenuController, canCloseMenuAtIndexPath indexPath: IndexPath) -> Bool {
-        return indexPath.row != 0 && indexPath.row != 1
+        return true
+//        return indexPath.row != 0 && indexPath.row != 1
     }
     
 }

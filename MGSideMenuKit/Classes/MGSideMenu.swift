@@ -27,10 +27,35 @@ import Foundation
 import SideMenuSwift
 
 public class MGSideMenu {
+    public var containerController: UIViewController!
+    public var menuController: MGMenuController!
     
-    public init(dataSource: MGSideMenuDataSource, delegate: MGSideMenuDataDelegate) {
-        self.dataSource = dataSource
-        self.delegate = delegate
+    public init() {
+        
+    }
+    
+    public var dataSource: MGSideMenuDataSource! {
+        didSet {
+            self.menuController = _menuController
+            self.containerController = _containerController
+        }
+    }
+    
+    public var delegate: MGSideMenuDataDelegate! {
+        didSet {
+        }
+    }
+
+}
+
+extension MGSideMenu {
+    
+    private var _containerController: UIViewController? {
+       
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            
+            return _splitController
+        }
         
         SideMenuController.preferences.basic.menuWidth = 240
         SideMenuController.preferences.basic.statusBarBehavior = .none
@@ -40,82 +65,50 @@ public class MGSideMenu {
         SideMenuController.preferences.basic.supportedOrientations = .portrait
         SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
         SideMenuController.preferences.basic.defaultCacheKey = "0"
-
-        self.containerController = _containerController
-        self.menuController = _menuController
-        self.centerController = _centerController
-    }
-    
-    public var containerController: UIViewController!
-    private var menuController: MGMenuController!
-    private var centerController: MGCenterController!
-    private var dataSource: MGSideMenuDataSource!
-    private var delegate: MGSideMenuDataDelegate!
-    
-}
-
-extension MGSideMenu {
-    
-    // MARK - ContainerController
-
-    private var _containerController: UIViewController? {
         
-        switch UIDevice.current.userInterfaceIdiom {
-        case .unspecified:
-            return _sideController
-        case .phone:
-            return _sideController
-        case .pad:
-            return _splitController
-        case .tv:
-            return _sideController
-        case .carPlay:
-            return _sideController
-        }
+        return _sideController
     }
-    
-    // MARK - SplitController
     
     private var _sideController: SideMenuController {
-        return SideMenuController(contentViewController: dataSource.primaryController ?? _centerController, menuViewController: _menuController)
+        let controller = _menuController
+        let centerController = dataSource.primaryCenterController(fromController: controller)
+        
+        let sideMenuController = SideMenuController(contentViewController: centerController, menuViewController: _menuController)
+        return sideMenuController
     }
-
-    // MARK - SplitController
     
     private var _splitController: MGSplitController {
-        guard let splitController = _storyboard.instantiateViewController(withIdentifier: "MGSplitController") as? MGSplitController else { return MGSplitController() }
+        guard let splitController = _storyboard.instantiateViewController(withIdentifier: splitViewControllerIdentifier) as? MGSplitController else { return MGSplitController() }
         splitController.maximumPrimaryColumnWidth = 240
-        splitController.viewControllers = [_menuController, dataSource.primaryController ?? _centerController]
+        let controller = _menuController
+        let centerController = dataSource.primaryCenterController(fromController: controller)
+
+        splitController.viewControllers = [_menuController, centerController]
         return splitController
     }
     
-    // MARK - MenuController
-
     private var _menuController: MGMenuController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController else { return MGMenuController() }
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier)
+            as? MGMenuController else { return MGMenuController() }
+        
         controller.data = dataSource.data
         controller.items = dataSource.items
         controller.layout = dataSource.layout
+        
         controller.didSelectMenuItemAtIndexPath = { [unowned self] (controller, item, indexPath) in
             self.delegate.menuController(controller, didSelectItem:item, atIndexPath:indexPath)
         }
+        
         controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
             return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
         }
+        
         controller.controllerForIndexPath = { [unowned self] (controller, item, indexPath) -> UIViewController? in
-            return self.dataSource.centerController(item: item, forIndexPath: indexPath)
+            return self.dataSource.centerController(item: item, forIndexPath: indexPath, fromController: controller)
         }
-        return controller
-    }
 
-    // MARK - CenterController
-    
-    private var _centerController: MGCenterController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: centerViewControllerIdentifier) as? MGCenterController else { return MGCenterController() }
         return controller
     }
-    
-    // MARK - Storyboard
     
     private var _storyboard:UIStoryboard {
         return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
@@ -130,16 +123,9 @@ extension MGSideMenu {
 
 }
 
-fileprivate let storyboardName = "MGSideMenu"
 fileprivate let menuViewControllerIdentifier = "MGMenuController"
 fileprivate let centerViewControllerIdentifier = "MGCenterController"
+fileprivate let splitViewControllerIdentifier = "MGSplitController"
+fileprivate let storyboardName = "MGSideMenu"
 fileprivate let resourceName = "MGSideMenuKit"
 fileprivate let resourceExtension = "bundle"
-
-
-extension MGSplitController {
-    func toggleMasterView() {
-        let barButtonItem = self.displayModeButtonItem
-        UIApplication.shared.sendAction(barButtonItem.action!, to: barButtonItem.target, from: nil, for: nil)
-    }
-}
