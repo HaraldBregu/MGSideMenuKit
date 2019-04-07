@@ -13,16 +13,15 @@ import MGTemplateKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window:UIWindow?
-    var sideMenu:MGSideMenu!
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         MGTemplate.setup()
         window = UIWindow(frame: UIScreen.main.bounds)
       
-        sideMenu = MGSideMenu()
-        sideMenu.dataSource = SideMenuDataSource(sideMenu: sideMenu)
+        let sideMenu = MGSideMenu()
+        sideMenu.dataSource = SideMenuDataSource()
         sideMenu.delegate = SideMenuDelegate()
-
+        
         window?.rootViewController = sideMenu.containerController
         window?.makeKeyAndVisible()
         return true
@@ -61,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 class SideMenuDataSource: MGSideMenuDataSource {
 
-    init(sideMenu: MGSideMenu) {
-        print(sideMenu)
+    init() {
     }
     
     var data: MGSideMenuData {

@@ -28,24 +28,16 @@ import SideMenuSwift
 
 public class MGSideMenu {
     public var containerController: UIViewController!
-    public var menuController: MGMenuController!
-    
-    public init() {
-        
-    }
+
+    public init() {}
     
     public var dataSource: MGSideMenuDataSource! {
         didSet {
-            self.menuController = _menuController
             self.containerController = _containerController
         }
     }
     
-    public var delegate: MGSideMenuDataDelegate! {
-        didSet {
-        }
-    }
-
+    public var delegate: MGSideMenuDataDelegate!
 }
 
 extension MGSideMenu {
@@ -71,42 +63,36 @@ extension MGSideMenu {
     
     private var _sideController: SideMenuController {
         let controller = _menuController
+        
         let centerController = dataSource.primaryCenterController(fromController: controller)
         
-        let sideMenuController = SideMenuController(contentViewController: centerController, menuViewController: _menuController)
-        return sideMenuController
+        return SideMenuController(contentViewController: centerController, menuViewController: _menuController)
     }
     
     private var _splitController: MGSplitController {
-        guard let splitController = _storyboard.instantiateViewController(withIdentifier: splitViewControllerIdentifier) as? MGSplitController else { return MGSplitController() }
-        splitController.maximumPrimaryColumnWidth = 240
         let controller = _menuController
         let centerController = dataSource.primaryCenterController(fromController: controller)
 
+        guard let splitController = _storyboard.instantiateViewController(withIdentifier: splitViewControllerIdentifier) as? MGSplitController else { return MGSplitController() }
+        splitController.maximumPrimaryColumnWidth = 240
         splitController.viewControllers = [_menuController, centerController]
         return splitController
     }
     
     private var _menuController: MGMenuController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier)
-            as? MGMenuController else { return MGMenuController() }
-        
+        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController else { return MGMenuController() }
         controller.data = dataSource.data
         controller.items = dataSource.items
         controller.layout = dataSource.layout
-        
-        controller.didSelectMenuItemAtIndexPath = { [unowned self] (controller, item, indexPath) in
+        controller.didSelectMenuItemAtIndexPath = { (controller, item, indexPath) in
             self.delegate.menuController(controller, didSelectItem:item, atIndexPath:indexPath)
         }
-        
         controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
             return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
         }
-        
         controller.controllerForIndexPath = { [unowned self] (controller, item, indexPath) -> UIViewController? in
             return self.dataSource.centerController(item: item, forIndexPath: indexPath, fromController: controller)
         }
-
         return controller
     }
     

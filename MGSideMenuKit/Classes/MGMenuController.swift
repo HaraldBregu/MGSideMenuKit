@@ -119,6 +119,13 @@ extension MGMenuController: UITableViewDelegate {
         didSelectMenuItemAtIndexPath(self, item, indexPath)
         if canCloseMenuAtIndexPath(self, indexPath) {
             sideMenuController?.hideMenu()
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if let splitViewController = self.splitViewController {
+                    UIApplication.shared.sendAction(
+                        splitViewController.displayModeButtonItem.action!,
+                        to: splitViewController.displayModeButtonItem.target, from: nil, for: nil)
+                }
+            }
         }
 
         if let controller = controllerForIndexPath(self, item, indexPath) {
