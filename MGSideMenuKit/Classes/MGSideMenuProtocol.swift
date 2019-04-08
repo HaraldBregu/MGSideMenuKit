@@ -30,7 +30,7 @@ public protocol MGSideMenuProtocol {
     func showMenu()
 }
 
-extension MGSideMenuProtocol where Self: MGMenuController {
+extension MGSideMenuProtocol where Self: UIViewController {
     
     public func showMenu() {
         if let parentController = self.parent {
