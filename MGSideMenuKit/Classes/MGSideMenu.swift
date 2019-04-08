@@ -63,10 +63,13 @@ extension MGSideMenu {
     
     private var _sideController: SideMenuController {
         let controller = _menuController
-        
         let centerController = dataSource.primaryCenterController(fromController: controller)
         
-        return SideMenuController(contentViewController: centerController, menuViewController: _menuController)
+        let sideMenuController = SideMenuController()
+        sideMenuController.contentViewController = centerController
+        sideMenuController.menuViewController = controller
+        
+        return sideMenuController
     }
     
     private var _splitController: MGSplitController {
@@ -75,7 +78,7 @@ extension MGSideMenu {
 
         guard let splitController = _storyboard.instantiateViewController(withIdentifier: splitViewControllerIdentifier) as? MGSplitController else { return MGSplitController() }
         splitController.maximumPrimaryColumnWidth = 240
-        splitController.viewControllers = [_menuController, centerController]
+        splitController.viewControllers = [controller, centerController]
         return splitController
     }
     
@@ -93,9 +96,10 @@ extension MGSideMenu {
         controller.controllerForIndexPath = { [unowned self] (controller, item, indexPath) -> UIViewController? in
             return self.dataSource.centerController(item: item, forIndexPath: indexPath, fromController: controller)
         }
+        
         return controller
     }
-    
+
     private var _storyboard:UIStoryboard {
         return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
     }

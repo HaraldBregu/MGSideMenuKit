@@ -25,7 +25,6 @@
 
 import UIKit
 
-/// :nodoc:
 public class MGMenuItemCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!

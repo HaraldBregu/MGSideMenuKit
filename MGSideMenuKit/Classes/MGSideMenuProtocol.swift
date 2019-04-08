@@ -30,12 +30,9 @@ public protocol MGSideMenuProtocol {
     func showMenu()
 }
 
-extension MGSideMenuProtocol where Self: UIViewController {
+extension MGSideMenuProtocol where Self: MGMenuController {
     
     public func showMenu() {
-        print(self)
-        print(self.parent)
-
         if let parentController = self.parent {
             
             if parentController.isKind(of: UINavigationController.self) {
@@ -74,10 +71,7 @@ extension MGSideMenuProtocol where Self: UIViewController {
                 }
             }
             else if self.isKind(of: MGMenuController.self) {
-                if let parent = self.parent {
-//                    guard let navigationController = self as? UINavigationController else { return }
-//                    guard let navigationControllerParent = navigationController.parent else { return }
-                    
+                if let parent = self.parent {                    
                     if parent.isKind(of: MGSplitController.self) {
                         guard let splitController = parent as? MGSplitController else { return }
                         self.use(controller: splitController)
