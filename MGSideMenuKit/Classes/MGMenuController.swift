@@ -26,21 +26,12 @@
 import UIKit
 import SideMenuSwift
 
-public class MGMenuController: UIViewController, MGSideMenuProtocol {
+public class MGMenuController: UIViewController {
     @IBOutlet var tableView: UITableView!
-    
-    var data:MGSideMenuData!
-    var items:[MGSideMenuItem] = []
-    var layout:MGSideMenuLayout!
-
-    var didSelectMenuItemAtIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> ())!
-    var canCloseMenuAtIndexPath:((MGMenuController, IndexPath) -> (Bool))!
-    var controllerForIndexPath:((MGMenuController, MGSideMenuItem, IndexPath) -> (UIViewController?))!
 
     override public func viewDidLoad() {
         super.viewDidLoad()
-
-        view.backgroundColor = layout.backgroundColor
+        
         navigationController?.isNavigationBarHidden = true
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 40
@@ -48,91 +39,13 @@ public class MGMenuController: UIViewController, MGSideMenuProtocol {
         tableView.tableFooterView = UIView()
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
-        tableView.backgroundColor = layout.backgroundColor
-        tableView.separatorColor = layout.backgroundColor
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
-
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-}
-
-extension MGMenuController: UITableViewDataSource {
-    
-    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let header = tableView.dequeueReusableCell(withIdentifier: "MGMenuHeaderCell") as? MGMenuHeaderCell else {
-            return UITableViewCell()
-        }
-        
-        header.contentView.backgroundColor = layout.backgroundColor
-        header.backgroundColor = layout.backgroundColor
-
-        header.iconImageView.isHidden = data.image == nil
-        header.iconImageView.image = data.image
-
-        header.titleLabel.font = layout.font
-        header.titleLabel.text = data.title
-
-        return header
-    }
-    
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MGMenuItemCell") as? MGMenuItemCell else {
-            return UITableViewCell()
-        }
-
-        let item = items[indexPath.row]
-
-        cell.contentView.backgroundColor = layout.backgroundColor
-        cell.backgroundColor = layout.backgroundColor
-
-        cell.iconImageView.isHidden = item.icon == nil
-        cell.iconImageView.image = item.icon
-
-        cell.titleLabel.text = item.title
-        cell.titleLabel.textColor = layout.tintColor
-        
-        return cell
-    }
-    
-}
-
-extension MGMenuController: UITableViewDelegate {
-    
-    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let item = items[indexPath.row]
-        
-        didSelectMenuItemAtIndexPath(self, item, indexPath)
-        if canCloseMenuAtIndexPath(self, indexPath) {
-            sideMenuController?.hideMenu()
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                if let splitViewController = self.splitViewController {
-                    UIApplication.shared.sendAction(
-                        splitViewController.displayModeButtonItem.action!,
-                        to: splitViewController.displayModeButtonItem.target, from: nil, for: nil)
-                }
-            }
-        }
-
-        if let controller = controllerForIndexPath(self, item, indexPath) {
-            sideMenuController?.setContentViewController(to: controller, animated: false, completion: nil)
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                self.splitViewController?.viewControllers[1] = controller
-            }
+    var assets:MGSideMenuAsset? {
+        didSet {
+            view.backgroundColor = assets?.color.backgroundView
+            tableView.backgroundColor = assets?.color.backgroundView
+            tableView.separatorColor = assets?.color.backgroundView
         }
     }
 

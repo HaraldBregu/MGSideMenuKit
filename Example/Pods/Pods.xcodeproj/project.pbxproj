@@ -10,7 +10,7 @@
 		0429C6E4DB4A49D971F037FD4C6EA002 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CFC5145C3B818273EB650DA405B6D4D9 /* Roboto-LightItalic.ttf */; };
 		066262B8E099C5D847F72D7763AE2724 /* MGSideMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41DFD8448B4104499D560C72FE0B9097 /* MGSideMenu.storyboard */; };
 		06E5E1240F921820A8E8C89D2B9E0DE7 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B530AB6BD40478014B2E68A20873FC40 /* StringExtension.swift */; };
-		0A3179593D038FA3BD40C10E794734F0 /* MGSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenu.swift */; };
+		0A3179593D038FA3BD40C10E794734F0 /* MGSideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenuController.swift */; };
 		0E51E5B62BD68A12B386CDB65DEF2AC7 /* FontAwesomeSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD995903A4556EE705DB97DF9D8787CF /* FontAwesomeSolid.ttf */; };
 		0FB9B5029EF571473F3AAED133F41A92 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2D15CECD767BE0D0754FB08055D01B /* Preferences.swift */; };
 		14BF5B4F6B946E120FF439D713AD6370 /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5CD121A3D2C6B2DB998CD6D9EBA009C6 /* Roboto-Black.ttf */; };
@@ -21,12 +21,11 @@
 		22A56383F90737309AF2FFCBE41CF3EC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7026395E2A9E6944A37C8420A98E87FD /* UIKit.framework */; };
 		247CE2D9CF28B5EF54F3933157F27A03 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B505F2A8EF027A9BD04273A4CEA1584B /* Foundation.framework */; };
 		2AB022D8BC5023099626ACC19C84AC21 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F550E458BBFFE1D8E2A33BC221FD6 /* UIColorExtension.swift */; };
-		2C63E5DAAF1CF047CAF55B7E08807F86 /* MGMenuHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11EB4A2819F15B0036E21C3C0E23A62 /* MGMenuHeaderCell.swift */; };
 		2E211CC8B343A74943EA2CD29C199838 /* TransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2FA74C22194799A08A457E1BA182CB /* TransitionContext.swift */; };
 		36D5026642F2AB5D195E334C465CB1B3 /* MGSideMenuKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9CBAD0E850A979E34D8498700EBB1F /* MGSideMenuKit-dummy.m */; };
 		37CA9913071CFED73FD9D451FBEEAB04 /* UIViewController+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3027BA882DE01FC23B46103E33EB5BD9 /* UIViewController+Container.swift */; };
-		3A0980DBF9320E6B163CED83E263A9A0 /* MGSideMenuDataDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuDataDelegate.swift */; };
-		3F2F224F29B582068C330DCBCE4A43DA /* MGSideMenuData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenuData.swift */; };
+		3A0980DBF9320E6B163CED83E263A9A0 /* MGSideMenuControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuControllerDelegate.swift */; };
+		3F2F224F29B582068C330DCBCE4A43DA /* MGSideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenu.swift */; };
 		448D1CA9349165044970A5BB5B9973F5 /* SwiftIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605093E58279C8E8AF8EDAD5717806E2 /* SwiftIcons.swift */; };
 		45606922E9822BE9F1E71CFCAC36F6C3 /* StatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F4E6D0F1747942E5ACBCC363F8DB208 /* StatusBar.swift */; };
 		4642ECCFE6398800012F687449E8B597 /* HEXColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 77436B9EACE17B81E7EC042A7A86E7C5 /* HEXColor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -40,7 +39,7 @@
 		56535DBB7B12066F1BF69A2DCD0DE998 /* SideMenuSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC4B364CE38D99B163DB8D8ED5F7E24 /* SideMenuSwift.framework */; };
 		57551CC1B893D822BBFD280C6D79AFE8 /* FontBlaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC487BAC6B0B40A680F4E08F0D70823 /* FontBlaster.swift */; };
 		57F205478E8C0D0541A782CBF219620B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B505F2A8EF027A9BD04273A4CEA1584B /* Foundation.framework */; };
-		5A4F46F78ACD0243E263809F9DCC3DEC /* MGSideMenuDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuDataSource.swift */; };
+		5A4F46F78ACD0243E263809F9DCC3DEC /* MGSideMenuControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuControllerDataSource.swift */; };
 		5AA8D3A84C27F5977D38B6DFD477BDFE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B505F2A8EF027A9BD04273A4CEA1584B /* Foundation.framework */; };
 		6C36DC50F727209B28C2F17AE6B7E50D /* UIColorInputError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8C269F6374E33142DCD2651027D6EA /* UIColorInputError.swift */; };
 		6E4FAD79EB93E4E10A35ACA718793D2D /* UIImage+New.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62EC348DF8DE766CF1BACF6C99A7F7BC /* UIImage+New.swift */; };
@@ -50,17 +49,14 @@
 		7BDF8CA5047BAF5688D51589E375E478 /* MGTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9B88B5A25CF47777FC78156B7896FF /* MGTemplate.swift */; };
 		7EF51C4BBAB77D9C82275A309953D41E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B505F2A8EF027A9BD04273A4CEA1584B /* Foundation.framework */; };
 		88B9C39E06FAA00D880CB0800535EFDB /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FDB1FEE40630CFD505522EEAC31F922 /* Roboto-Light.ttf */; };
-		918AA7B88A937DB2B69BD9B43A13F250 /* MGSideMenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C414239FF6BE2AD70E0801FC8AC2B4F /* MGSideMenuItem.swift */; };
 		92491D8F4B0FF0DA9F860035D0FAF57C /* MGTemplateKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BEED9F9C9FC3675C5FD1A0330ECCB54 /* MGTemplateKit-dummy.m */; };
 		970AC499D0A1B51CDAF46D1401EA98CD /* MGSideMenuKit.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7DFBAC27889D52F1C10D3DE2D03C03A1 /* MGSideMenuKit.bundle */; };
 		976CD93DE3AAC24E7FEB3C61D04CA527 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C00C3F3703A9662DA3EAFB90518A942D /* Ionicons.ttf */; };
 		9C4BC4717A42E515C35246F4C045B1C2 /* SideMenuSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0336AEE5E500CBF3B01D4B3D20EC2DCE /* SideMenuSwift-dummy.m */; };
 		A06251F5DCF239DD5175386A1DBBD577 /* UIColor_Hex_Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E34B15F5632F6DD0B86C7360E6E6D1AA /* UIColor_Hex_Swift-dummy.m */; };
 		A0FA9BF722D17848EF961A7A853C5A1D /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46DAB4FC66C34E148AB8A82EC1E4FFA6 /* Roboto-Thin.ttf */; };
-		A58253F7475207429D800F00DA239AEC /* MGSideMenuLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7590900B24DE4A3ECEBC12163286C0E2 /* MGSideMenuLayout.swift */; };
 		A72DF4FF5C3C95CACA070251A6F4006C /* UIColor_Hex_Swift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FC3134F142A9EEE96BD2DA6582F8A07 /* UIColor_Hex_Swift.framework */; };
 		A98CC6DCA45D4F060A0401DEFC0DC3D6 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D9B0D580F2C97E0728877136A256AB86 /* Roboto-BlackItalic.ttf */; };
-		A9F0F5352258BF77004B2CD8 /* MGSideMenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F0F513225895EB004B2CD8 /* MGSideMenuProtocol.swift */; };
 		AF6FE45A6549CF393CDEB0B98429DAF0 /* SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C06A9CDE9784B153D1D0DFF52FED87 /* SideMenuController.swift */; };
 		B86BCF95872CE43A01382C4EFB5E116A /* SideMenuSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AEDA23A1D19BEF9E9BB7D72ADE05AB6A /* SideMenuSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C179FD3ABBACA0FCF0D7F838714DF5D8 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AF10167B65CA7B2D02D252AF8130E1C1 /* Roboto-Bold.ttf */; };
@@ -79,9 +75,7 @@
 		E888575FE518AC9811F7F2EEA53FD447 /* FontAwesomeRegular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 829F169629A75BE1CA526AF6421AAA13 /* FontAwesomeRegular.ttf */; };
 		E8A1C2C09F5D6AE9D4BE7CEDD64AB867 /* UIControl+New.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50534AFE346F2F375688FFE22BD7269 /* UIControl+New.swift */; };
 		EA10E4FE49FE9CA83CFEFE834BC721DC /* FontAwesome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28BE3F892A09D09B0F4C4F526B3A69FC /* FontAwesome.swift */; };
-		EA49438391B98DC32B2A250216DA2E09 /* MGSplitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 946BF08EC5BED2A5216C12CD630446FD /* MGSplitController.swift */; };
 		EB7815AEA182A0AFE01F96639DA89B66 /* MaterialDesignIcons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266A8711E9BBDBF5D7EC35FE1BF5E9BA /* MaterialDesignIcons.swift */; };
-		ECECD8A2E22A40165B8C54B27B0C254C /* MGMenuItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1B2389DC308009FE6AD2A64481E057D /* MGMenuItemCell.swift */; };
 		F01F1B57BBEE08C322BFF5AED654BCEC /* UIViewController+SideMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B79C2A0D1D1501740B5B4F7243D609 /* UIViewController+SideMenu.swift */; };
 		F1A14C5B653D0C7E46A84A13057C6FF3 /* String+New.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD674CE69449D914844BB5441D8199E4 /* String+New.swift */; };
 		F3846654640985B40BBC3FF8819CE9AE /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 238042A84AF2A7E3635C9BB81D0871C9 /* FontAwesome.ttf */; };
@@ -175,7 +169,7 @@
 		224080890D2709BF9E571CF359FFECE5 /* SideMenuSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SideMenuSwift.modulemap; sourceTree = "<group>"; };
 		238042A84AF2A7E3635C9BB81D0871C9 /* FontAwesome.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = FontAwesome.ttf; path = MGTemplateKit/Assets/FontAwesome.ttf; sourceTree = "<group>"; };
 		24A01D77EC0E1E1F17D40B3523034717 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Roboto-Italic.ttf"; path = "MGTemplateKit/Assets/Roboto-Italic.ttf"; sourceTree = "<group>"; };
-		25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenuData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuData.swift; path = MGSideMenuKit/Classes/MGSideMenuData.swift; sourceTree = "<group>"; };
+		25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenu.swift; path = MGSideMenuKit/Classes/MGSideMenu.swift; sourceTree = "<group>"; };
 		266A8711E9BBDBF5D7EC35FE1BF5E9BA /* MaterialDesignIcons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MaterialDesignIcons.swift; path = MGTemplateKit/Classes/MaterialDesignIcons.swift; sourceTree = "<group>"; };
 		28BE3F892A09D09B0F4C4F526B3A69FC /* FontAwesome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontAwesome.swift; path = MGTemplateKit/Classes/FontAwesome.swift; sourceTree = "<group>"; };
 		29344DD6E9C948BBF5C30657865F4822 /* FontBlaster-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FontBlaster-Info.plist"; sourceTree = "<group>"; };
@@ -205,12 +199,10 @@
 		692B846A0A5DF9CF3D6FC97E6BCE70BD /* MGSideMenuKit.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = MGSideMenuKit.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		6AC487BAC6B0B40A680F4E08F0D70823 /* FontBlaster.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FontBlaster.swift; path = Sources/FontBlaster.swift; sourceTree = "<group>"; };
 		6BC93C85776FCF7757AD5D7F7768E0B9 /* Segue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Segue.swift; path = SideMenu/Segue.swift; sourceTree = "<group>"; };
-		6C414239FF6BE2AD70E0801FC8AC2B4F /* MGSideMenuItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuItem.swift; path = MGSideMenuKit/Classes/MGSideMenuItem.swift; sourceTree = "<group>"; };
 		6CCB50A0C9D9660FCF5FE6C46CB33214 /* MGSideMenuKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MGSideMenuKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC3134F142A9EEE96BD2DA6582F8A07 /* UIColor_Hex_Swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UIColor_Hex_Swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC4B364CE38D99B163DB8D8ED5F7E24 /* SideMenuSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideMenuSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7026395E2A9E6944A37C8420A98E87FD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.0.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		7590900B24DE4A3ECEBC12163286C0E2 /* MGSideMenuLayout.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuLayout.swift; path = MGSideMenuKit/Classes/MGSideMenuLayout.swift; sourceTree = "<group>"; };
 		76D504FC9C207C233C0BC3FCA2FDB6D5 /* ResourceBundle-MGTemplateKit-MGTemplateKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MGTemplateKit-MGTemplateKit-Info.plist"; sourceTree = "<group>"; };
 		77436B9EACE17B81E7EC042A7A86E7C5 /* HEXColor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = HEXColor.h; path = HEXColor/HEXColor.h; sourceTree = "<group>"; };
 		7808D139246F725FA8FEBDD3B3B9E168 /* ResourceBundle-MGSideMenuKit-MGSideMenuKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-MGSideMenuKit-MGSideMenuKit-Info.plist"; sourceTree = "<group>"; };
@@ -227,19 +219,16 @@
 		8B399F840FDE0B76BCA44E56AD84CBB1 /* SideMenuSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SideMenuSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C18873B779B85D2268CD23ECD6A3323 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Roboto-Medium.ttf"; path = "MGTemplateKit/Assets/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		8C94C4C48CD6DEC8827D5B3545327717 /* UIColor_Hex_Swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "UIColor_Hex_Swift-Info.plist"; sourceTree = "<group>"; };
-		946BF08EC5BED2A5216C12CD630446FD /* MGSplitController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSplitController.swift; path = MGSideMenuKit/Classes/MGSplitController.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E4645313399700D9D6BE91D348724BC /* UIView+Container.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Container.swift"; path = "SideMenu/UIView+Container.swift"; sourceTree = "<group>"; };
 		9F476696A4B07E2E30EDF91D5226E73F /* DateFormatter+New.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DateFormatter+New.swift"; path = "MGTemplateKit/Classes/Extensions/DateFormatter+New.swift"; sourceTree = "<group>"; };
 		9FDB1FEE40630CFD505522EEAC31F922 /* Roboto-Light.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Roboto-Light.ttf"; path = "MGTemplateKit/Assets/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		A035819B6A31CAC418B374D273CF58BA /* Pods-MGSideMenuKit_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-MGSideMenuKit_Example-umbrella.h"; sourceTree = "<group>"; };
-		A11EB4A2819F15B0036E21C3C0E23A62 /* MGMenuHeaderCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGMenuHeaderCell.swift; path = MGSideMenuKit/Classes/MGMenuHeaderCell.swift; sourceTree = "<group>"; };
 		A24ADF48C5918781168CFD95648CCF94 /* MGTemplateKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = MGTemplateKit.xcconfig; sourceTree = "<group>"; };
 		A27AD6DEB1AAD735E2FA313D36CEB571 /* Pods_MGSideMenuKit_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MGSideMenuKit_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6F8AA01F9229EB3AD0C7443D3BD5E00 /* UIColor_Hex_Swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor_Hex_Swift-umbrella.h"; sourceTree = "<group>"; };
 		A8C48294B29296BB26A818F60744B11F /* FontBlaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FontBlaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9F0F513225895EB004B2CD8 /* MGSideMenuProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MGSideMenuProtocol.swift; path = MGSideMenuKit/Classes/MGSideMenuProtocol.swift; sourceTree = "<group>"; };
-		AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenu.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenu.swift; path = MGSideMenuKit/Classes/MGSideMenu.swift; sourceTree = "<group>"; };
+		AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenuController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuController.swift; path = MGSideMenuKit/Classes/MGSideMenuController.swift; sourceTree = "<group>"; };
 		AD14CFA4AE46E9346D9E60B6B447297B /* MGTemplateKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGTemplateKit-prefix.pch"; sourceTree = "<group>"; };
 		AD674CE69449D914844BB5441D8199E4 /* String+New.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+New.swift"; path = "MGTemplateKit/Classes/Extensions/String+New.swift"; sourceTree = "<group>"; };
 		AEDA23A1D19BEF9E9BB7D72ADE05AB6A /* SideMenuSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SideMenuSwift-umbrella.h"; sourceTree = "<group>"; };
@@ -254,8 +243,7 @@
 		BCC97B7FFCFB19768FD592A9D8BF66EF /* MGSideMenuKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGSideMenuKit-prefix.pch"; sourceTree = "<group>"; };
 		BE06040025B167AD8337712D6E2BDAA4 /* MGSideMenuKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "MGSideMenuKit-Info.plist"; sourceTree = "<group>"; };
 		C00C3F3703A9662DA3EAFB90518A942D /* Ionicons.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = Ionicons.ttf; path = MGTemplateKit/Assets/Ionicons.ttf; sourceTree = "<group>"; };
-		C1B2389DC308009FE6AD2A64481E057D /* MGMenuItemCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGMenuItemCell.swift; path = MGSideMenuKit/Classes/MGMenuItemCell.swift; sourceTree = "<group>"; };
-		C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuDataSource.swift; path = MGSideMenuKit/Classes/MGSideMenuDataSource.swift; sourceTree = "<group>"; };
+		C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuControllerDataSource.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuControllerDataSource.swift; path = MGSideMenuKit/Classes/MGSideMenuControllerDataSource.swift; sourceTree = "<group>"; };
 		C42C93875BF08BE5F76D04C3AB0E21E7 /* MGTemplateKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MGTemplateKit-umbrella.h"; sourceTree = "<group>"; };
 		CC6C53ABFAAB35CD7CFB24A128BCBE69 /* VaadinIcons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = VaadinIcons.swift; path = MGTemplateKit/Classes/VaadinIcons.swift; sourceTree = "<group>"; };
 		CD1FB3FAD8966D12A4D4216B5668851B /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; name = "Roboto-MediumItalic.ttf"; path = "MGTemplateKit/Assets/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
@@ -273,7 +261,7 @@
 		E283F5D61AE8C0B011BF293E57310690 /* UIColor_Hex_Swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor_Hex_Swift-prefix.pch"; sourceTree = "<group>"; };
 		E34B15F5632F6DD0B86C7360E6E6D1AA /* UIColor_Hex_Swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIColor_Hex_Swift-dummy.m"; sourceTree = "<group>"; };
 		E384686C60EBE142108BB2CB83B4A9F9 /* Pods-MGSideMenuKit_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MGSideMenuKit_Example.modulemap"; sourceTree = "<group>"; };
-		EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuDataDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuDataDelegate.swift; path = MGSideMenuKit/Classes/MGSideMenuDataDelegate.swift; sourceTree = "<group>"; };
+		EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuControllerDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MGSideMenuControllerDelegate.swift; path = MGSideMenuKit/Classes/MGSideMenuControllerDelegate.swift; sourceTree = "<group>"; };
 		EC863EFE2B6E03D6FC140DDB06C9F83E /* Pods-MGSideMenuKit_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-MGSideMenuKit_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		F392573B959B0D51A3F3630CD997EE5F /* MGTemplateKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MGTemplateKit.modulemap; sourceTree = "<group>"; };
 		F4D24B73BFA5EB8A24E0B4B391D8E570 /* Ionicons.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Ionicons.swift; path = MGTemplateKit/Classes/Ionicons.swift; sourceTree = "<group>"; };
@@ -492,17 +480,11 @@
 		749A7203470616CCC42453447B276FDD /* MGSideMenuKit */ = {
 			isa = PBXGroup;
 			children = (
-				AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenu.swift */,
+				25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenu.swift */,
+				AC502FAB9133D38E0A5D3C835DFFAF90 /* MGSideMenuController.swift */,
 				5B7A38658E80E1D93D50C8389856A520 /* MGMenuController.swift */,
-				A11EB4A2819F15B0036E21C3C0E23A62 /* MGMenuHeaderCell.swift */,
-				C1B2389DC308009FE6AD2A64481E057D /* MGMenuItemCell.swift */,
-				25CA9B2B502EFB1BECC41AFB35E3A8DF /* MGSideMenuData.swift */,
-				EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuDataDelegate.swift */,
-				C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuDataSource.swift */,
-				6C414239FF6BE2AD70E0801FC8AC2B4F /* MGSideMenuItem.swift */,
-				A9F0F513225895EB004B2CD8 /* MGSideMenuProtocol.swift */,
-				7590900B24DE4A3ECEBC12163286C0E2 /* MGSideMenuLayout.swift */,
-				946BF08EC5BED2A5216C12CD630446FD /* MGSplitController.swift */,
+				EBDF5821FFDAF8E4AD6B0D921A9E5C96 /* MGSideMenuControllerDelegate.swift */,
+				C2D1D52A4A1C76A87A7EE748B158C6AF /* MGSideMenuControllerDataSource.swift */,
 				D9986061D6E4C7EA1042B364C4BA6D17 /* Pod */,
 				7F8344AC8D4641DD5B9ACE74330BCE36 /* Resources */,
 				87691B9741A5B88D92CACB0836701636 /* Support Files */,
@@ -973,17 +955,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				561067B820F75BB7E18584A89A23FE18 /* MGMenuController.swift in Sources */,
-				2C63E5DAAF1CF047CAF55B7E08807F86 /* MGMenuHeaderCell.swift in Sources */,
-				ECECD8A2E22A40165B8C54B27B0C254C /* MGMenuItemCell.swift in Sources */,
-				0A3179593D038FA3BD40C10E794734F0 /* MGSideMenu.swift in Sources */,
-				3F2F224F29B582068C330DCBCE4A43DA /* MGSideMenuData.swift in Sources */,
-				3A0980DBF9320E6B163CED83E263A9A0 /* MGSideMenuDataDelegate.swift in Sources */,
-				5A4F46F78ACD0243E263809F9DCC3DEC /* MGSideMenuDataSource.swift in Sources */,
-				918AA7B88A937DB2B69BD9B43A13F250 /* MGSideMenuItem.swift in Sources */,
+				0A3179593D038FA3BD40C10E794734F0 /* MGSideMenuController.swift in Sources */,
+				3F2F224F29B582068C330DCBCE4A43DA /* MGSideMenu.swift in Sources */,
+				3A0980DBF9320E6B163CED83E263A9A0 /* MGSideMenuControllerDelegate.swift in Sources */,
+				5A4F46F78ACD0243E263809F9DCC3DEC /* MGSideMenuControllerDataSource.swift in Sources */,
 				36D5026642F2AB5D195E334C465CB1B3 /* MGSideMenuKit-dummy.m in Sources */,
-				A58253F7475207429D800F00DA239AEC /* MGSideMenuLayout.swift in Sources */,
-				A9F0F5352258BF77004B2CD8 /* MGSideMenuProtocol.swift in Sources */,
-				EA49438391B98DC32B2A250216DA2E09 /* MGSplitController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

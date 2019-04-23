@@ -1,7 +1,7 @@
 // 
-//  MGSideMenuLayout.swift
+//  MGSideMenuControllerDelegate.swift
 //
-//  Created by harald bregu on 14/03/2019.
+//  Created by harald bregu on 12/03/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,14 +25,8 @@
 
 import Foundation
 
-public class MGSideMenuLayout {
-    public var navBackgroundColor:UIColor!
-    public var navTintColor:UIColor!
-    public var backgroundColor:UIColor!
-    public var tintColor:UIColor!
-    public var font:UIFont!
 
-    public init() {
-        
-    }
+public protocol MGSideMenuControllerDelegate {
+    func controller(_ controller:MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath:IndexPath)
+    func controller(_ controller:MGMenuController, canCloseItem item: MGSideMenuItem, atIndexPath indexPath:IndexPath) -> Bool
 }

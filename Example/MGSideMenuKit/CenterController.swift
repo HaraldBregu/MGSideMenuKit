@@ -27,7 +27,7 @@ import UIKit
 import MGSideMenuKit
 
 class CenterController: UIViewController {
-    var presenterController: MGMenuController!
+    var controller:MGSideMenuController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,10 @@ class CenterController: UIViewController {
     }
 
     @IBAction func openMenu(_ sender: Any) {
-        presenterController.showMenu()
+        controller.showMenu()
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

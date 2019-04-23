@@ -1,7 +1,7 @@
 // 
-//  MGSplitController.swift
+//  MGSideMenuControllerDataSource.swift
 //
-//  Created by harald bregu on 05/04/2019.
+//  Created by harald bregu on 12/03/2019.
 //  Copyright © 2019 Dream Building Company. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,17 +23,10 @@
 //  THE SOFTWARE.
 //
 
-import UIKit
+import Foundation
 
-public class MGSplitController: UISplitViewController {
 
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-    override public var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
+public protocol MGSideMenuControllerDataSource {
+    var centerController:UIViewController { get }
+    func centerController(item:MGSideMenuItem, forIndexPath indexPath:IndexPath, fromController controller:MGMenuController) -> UIViewController?
 }

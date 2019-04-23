@@ -24,98 +24,42 @@
 //
 
 import Foundation
-import SideMenuSwift
 
-public class MGSideMenu {
-    public var containerController: UIViewController!
+public protocol MGSideMenuAsset {
+    var string: MGSideMenuString { get set }
+    var font: MGSideMenuFont { get set }
+    var image: MGSideMenuImage { get set }
+    var color: MGSideMenuColor { get set }
+    var data: MGSideMenuData { get set }
+}
 
+public protocol MGSideMenuString {
+    var title: String { get set }
+}
+
+public protocol MGSideMenuFont {
+    var title: UIFont? { get set }
+}
+
+public protocol MGSideMenuImage {
+    var avatar: UIImage? { get set }
+}
+
+public protocol MGSideMenuColor {
+    var backgroundView: UIColor { get set }
+    var headerView: UIColor { get set }
+    var cellView: UIColor { get set }
+    var cellLabel: UIColor { get set }
+}
+
+public protocol MGSideMenuData {
+    var items: [MGSideMenuItem] { get set }
+}
+
+public class MGSideMenuItem {
+    public var title:String!
+    public var icon:UIImage?
+    public var identifier:String!
+    public var data:Any?
     public init() {}
-    
-    public var dataSource: MGSideMenuDataSource! {
-        didSet {
-            self.containerController = _containerController
-        }
-    }
-    
-    public var delegate: MGSideMenuDataDelegate!
 }
-
-extension MGSideMenu {
-    
-    private var _containerController: UIViewController? {
-       
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            
-            return _splitController
-        }
-        
-        SideMenuController.preferences.basic.menuWidth = 240
-        SideMenuController.preferences.basic.statusBarBehavior = .none
-        SideMenuController.preferences.basic.position = .under
-        SideMenuController.preferences.basic.direction = .left
-        SideMenuController.preferences.basic.enablePanGesture = true
-        SideMenuController.preferences.basic.supportedOrientations = .portrait
-        SideMenuController.preferences.basic.shouldRespectLanguageDirection = true
-        SideMenuController.preferences.basic.defaultCacheKey = "0"
-        
-        return _sideController
-    }
-    
-    private var _sideController: SideMenuController {
-        let controller = _menuController
-        let centerController = dataSource.primaryCenterController(fromController: controller)
-        
-        let sideMenuController = SideMenuController()
-        sideMenuController.contentViewController = centerController
-        sideMenuController.menuViewController = controller
-        
-        return sideMenuController
-    }
-    
-    private var _splitController: MGSplitController {
-        let controller = _menuController
-        let centerController = dataSource.primaryCenterController(fromController: controller)
-
-        guard let splitController = _storyboard.instantiateViewController(withIdentifier: splitViewControllerIdentifier) as? MGSplitController else { return MGSplitController() }
-        splitController.maximumPrimaryColumnWidth = 240
-        splitController.viewControllers = [controller, centerController]
-        return splitController
-    }
-    
-    private var _menuController: MGMenuController {
-        guard let controller = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController else { return MGMenuController() }
-        controller.data = dataSource.data
-        controller.items = dataSource.items
-        controller.layout = dataSource.layout
-        controller.didSelectMenuItemAtIndexPath = { (controller, item, indexPath) in
-            self.delegate.menuController(controller, didSelectItem:item, atIndexPath:indexPath)
-        }
-        controller.canCloseMenuAtIndexPath = { [unowned self] (controller, indexPath) -> Bool in
-            return self.delegate.menuController(controller, canCloseMenuAtIndexPath:indexPath)
-        }
-        controller.controllerForIndexPath = { [unowned self] (controller, item, indexPath) -> UIViewController? in
-            return self.dataSource.centerController(item: item, forIndexPath: indexPath, fromController: controller)
-        }
-        
-        return controller
-    }
-
-    private var _storyboard:UIStoryboard {
-        return UIStoryboard(name: storyboardName, bundle: _storyboardBundle)
-    }
-    
-    private var _storyboardBundle:Bundle {
-        let podBundle = Bundle(for: MGSideMenu.self)
-        let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
-        let bundle = Bundle(url: bundleURL!)!
-        return bundle
-    }
-
-}
-
-fileprivate let menuViewControllerIdentifier = "MGMenuController"
-fileprivate let centerViewControllerIdentifier = "MGCenterController"
-fileprivate let splitViewControllerIdentifier = "MGSplitController"
-fileprivate let storyboardName = "MGSideMenu"
-fileprivate let resourceName = "MGSideMenuKit"
-fileprivate let resourceExtension = "bundle"
