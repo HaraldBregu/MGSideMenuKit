@@ -170,18 +170,17 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let item = assets?.data.items[indexPath.row] else { return }
 
+        delegate?.controller(_menuController, didSelectItem: item, atIndexPath: indexPath)
+        if delegate?.controller(_menuController, canCloseItem: item, atIndexPath: indexPath) == true {
+            hideMenu()
+        }
+
         if let centercontroller = dataSource.centerController(item: item, forIndexPath: indexPath, fromController: _menuController) {
             if let controller = _splitViewController {
                 controller.viewControllers[1] = centercontroller
             } else if let controller = _sideMenuController {
                 controller.setContentViewController(to: centercontroller, animated: false, completion: nil)
             }
-        }
-        
-        delegate?.controller(_menuController, didSelectItem: item, atIndexPath: indexPath)
-        
-        if delegate?.controller(_menuController, canCloseItem: item, atIndexPath: indexPath) == true {
-            hideMenu()
         }
     }
     
@@ -208,7 +207,6 @@ public class MGMenuHeaderCell: UITableViewCell {
         iconImageView.clipsToBounds = true
     }
 }
-
 
 fileprivate let menuViewControllerIdentifier = "MGMenuController"
 fileprivate let storyboardName = "MGSideMenu"
