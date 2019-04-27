@@ -54,6 +54,7 @@ public protocol MGSideMenuColor {
 
 public protocol MGSideMenuData {
     var items: [MGSideMenuItem] { get set }
+    var statusBarStyle: UIStatusBarStyle { get set }
 }
 
 public class MGSideMenuItem {

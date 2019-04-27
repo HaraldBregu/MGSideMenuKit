@@ -31,27 +31,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-
 extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDelegate {
-
-    var centerController: UIViewController {
+    
+    func controller(_ parentController: UIViewController) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         let vc = storyboard.instantiateViewController(withIdentifier: "CenterController") as! CenterController
         vc.controller = sideMenuController
         return vc
     }
     
-    func centerController(item: MGSideMenuItem, forIndexPath indexPath: IndexPath, fromController controller: MGMenuController) -> UIViewController? {
+    func controller(_ parentController: UIViewController, forIndexPath indexPath: IndexPath, withItem item: AnyObject) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-
         switch indexPath.row {
         case 0:
             let vc = storyboard.instantiateViewController(withIdentifier: "vc1")
-//            vc.controller = sideMenuController
+            //vc.controller = sideMenuController
             return vc
         case 1:
             let vc = storyboard.instantiateViewController(withIdentifier: "vc2")
-//            vc.controller = sideMenuController
+            //vc.controller = sideMenuController
             return vc
         case 2:
             let vc = storyboard.instantiateViewController(withIdentifier: "CenterController") as! CenterController
@@ -62,14 +60,14 @@ extension AppDelegate: MGSideMenuControllerDataSource, MGSideMenuControllerDeleg
         }
     }
     
-    func controller(_ controller: MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) {
+    func controller(_ controller: UIViewController, didSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) {
         
     }
     
-    func controller(_ controller: MGMenuController, canCloseItem item: MGSideMenuItem, atIndexPath indexPath: IndexPath) -> Bool {
+    func controller(_ controller: UIViewController, canSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) -> Bool {
         return indexPath.row > 0
     }
-    
+
 }
 
 
@@ -113,7 +111,8 @@ extension SideMenuAssetsObject {
                 cellView: .black,
                 cellLabel: .white),
             data: SideMenuData(
-                items: newData))
+                items: newData,
+                statusBarStyle: .default))
     }
 }
 
@@ -146,4 +145,5 @@ struct SideMenuColor:MGSideMenuColor {
 
 struct SideMenuData:MGSideMenuData {
     var items: [MGSideMenuItem]
+    var statusBarStyle: UIStatusBarStyle
 }

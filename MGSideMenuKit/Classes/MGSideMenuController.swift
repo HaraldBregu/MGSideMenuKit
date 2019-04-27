@@ -27,16 +27,14 @@ import Foundation
 import SideMenuSwift
 
 public class MGSideMenuController:UIViewController {
-    
-    public var delegate:MGSideMenuControllerDelegate?
-    
+    public var delegate:MGSideMenuControllerDelegate?    
     public var dataSource:MGSideMenuControllerDataSource! {
         didSet {
             if let controller = _splitViewController {
-                controller.viewControllers[1] = dataSource.centerController
+                controller.viewControllers[1] = dataSource.controller(_menuController)
             }
             if let controller = _sideMenuController {
-                controller.setContentViewController(to: dataSource.centerController, animated: false, completion: nil)
+                controller.setContentViewController(to: dataSource.controller(_menuController), animated: false, completion: nil)
             }
         }
     }
@@ -47,11 +45,15 @@ public class MGSideMenuController:UIViewController {
         _menuController.tableView.delegate = self
         _menuController.tableView.dataSource = self
     }
-
+    
     public var assets:MGSideMenuAsset? {
         didSet {
             _menuController.assets = assets
         }
+    }
+    
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
+        return assets?.data.statusBarStyle ?? .default
     }
     
     public func showMenu() {
@@ -171,15 +173,16 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
         guard let item = assets?.data.items[indexPath.row] else { return }
 
         delegate?.controller(_menuController, didSelectItem: item, atIndexPath: indexPath)
-        if delegate?.controller(_menuController, canCloseItem: item, atIndexPath: indexPath) == true {
+        
+        if delegate?.controller(_menuController, canSelectItem: item, atIndexPath: indexPath) == true {
             hideMenu()
         }
-
-        if let centercontroller = dataSource.centerController(item: item, forIndexPath: indexPath, fromController: _menuController) {
+        
+        if let centerController = dataSource.controller(_menuController, forIndexPath: indexPath, withItem: item) {
             if let controller = _splitViewController {
-                controller.viewControllers[1] = centercontroller
+                controller.viewControllers[1] = centerController
             } else if let controller = _sideMenuController {
-                controller.setContentViewController(to: centercontroller, animated: false, completion: nil)
+                controller.setContentViewController(to: centerController, animated: false, completion: nil)
             }
         }
     }

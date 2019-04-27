@@ -25,8 +25,7 @@
 
 import Foundation
 
-
 public protocol MGSideMenuControllerDelegate {
-    func controller(_ controller:MGMenuController, didSelectItem item: MGSideMenuItem, atIndexPath indexPath:IndexPath)
-    func controller(_ controller:MGMenuController, canCloseItem item: MGSideMenuItem, atIndexPath indexPath:IndexPath) -> Bool
+    func controller(_ controller: UIViewController, didSelectItem item: AnyObject, atIndexPath indexPath: IndexPath)
+    func controller(_ controller: UIViewController, canSelectItem item: AnyObject, atIndexPath indexPath: IndexPath) -> Bool
 }

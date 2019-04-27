@@ -25,8 +25,7 @@
 
 import Foundation
 
-
 public protocol MGSideMenuControllerDataSource {
-    var centerController:UIViewController { get }
-    func centerController(item:MGSideMenuItem, forIndexPath indexPath:IndexPath, fromController controller:MGMenuController) -> UIViewController?
+    func controller(_ parentController: UIViewController) -> UIViewController
+    func controller(_ parentController: UIViewController, forIndexPath indexPath: IndexPath, withItem item: AnyObject) -> UIViewController?
 }
