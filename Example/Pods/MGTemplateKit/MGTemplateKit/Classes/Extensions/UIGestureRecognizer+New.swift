@@ -27,7 +27,7 @@ import UIKit
 
 public extension UIGestureRecognizer {
     @discardableResult
-    public convenience init(addToView targetView: UIView, closure: @escaping (_ gesture: UIGestureRecognizer) -> Void) {
+    convenience init(addToView targetView: UIView, closure: @escaping (_ gesture: UIGestureRecognizer) -> Void) {
         self.init()
         GestureTarget.add(gesture: self, closure: closure, toView: targetView)
     }

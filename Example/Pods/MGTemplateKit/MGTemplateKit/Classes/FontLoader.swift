@@ -120,7 +120,7 @@ fileprivate var loadedFontsTracker: [String: Bool] = [
 
 public extension UIImage {
     
-    public convenience init(icon: FontEnum, size: CGSize, textColor: UIColor = UIColor.black, backgroundColor: UIColor = UIColor.clear) {
+    convenience init(icon: FontEnum, size: CGSize, textColor: UIColor = UIColor.black, backgroundColor: UIColor = UIColor.clear) {
         let paragraph = NSMutableParagraphStyle()
         paragraph.alignment = NSTextAlignment.center
         
@@ -199,7 +199,7 @@ public extension UILabel {
 
 public extension UIImageView {
     
-    public func setFontIcon(_ icon: FontEnum, textColor: UIColor, backgroundColor: UIColor = UIColor.clear) {
+    func setFontIcon(_ icon: FontEnum, textColor: UIColor, backgroundColor: UIColor = UIColor.clear) {
         
         self.image = UIImage(icon: icon, size: frame.size, textColor: textColor, backgroundColor: backgroundColor)
     }
@@ -207,7 +207,7 @@ public extension UIImageView {
 
 public extension UITabBarItem {
     
-    public func setFontIcon(_ icon: FontEnum) {
+    func setFontIcon(_ icon: FontEnum) {
         
         image = UIImage(icon: icon, size: CGSize(width: 30, height: 30))
     }
@@ -215,7 +215,7 @@ public extension UITabBarItem {
 
 public extension UISegmentedControl {
     
-    public func setFontIcon(_ icon: FontEnum, forSegmentAtIndex segment: Int) {
+    func setFontIcon(_ icon: FontEnum, forSegmentAtIndex segment: Int) {
         
         let font = FontLoader.getFont(icon, iconSize: 23.0)
         

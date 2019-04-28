@@ -27,7 +27,7 @@ import Foundation
 
 public extension Data {
     
-    public var html2AttributedString: NSAttributedString? {
+    var html2AttributedString: NSAttributedString? {
         do {
             return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
         } catch {
@@ -35,7 +35,7 @@ public extension Data {
         }
     }
     
-    public var html2String: String {
+    var html2String: String {
         return html2AttributedString?.string ?? ""
     }
     

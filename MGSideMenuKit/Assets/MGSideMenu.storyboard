@@ -8,11 +8,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Roboto-Bold.ttf">
-            <string>Roboto-Bold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Menu Controller-->
         <scene sceneID="KhT-L1-Sgy">
@@ -29,7 +24,7 @@
                                     <constraint firstAttribute="width" constant="240" id="q7I-XY-x9L"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MGMenuHeaderCell" rowHeight="118" id="OFv-9v-FZZ" customClass="MGMenuHeaderCell" customModule="MGSideMenuKit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MGMenuHeaderCell" rowHeight="118" id="OFv-9v-FZZ" customClass="MGMenuHeaderCell" customModule="MGSideMenuKit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="240" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OFv-9v-FZZ" id="5EJ-ye-X1f">
@@ -37,46 +32,58 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FjJ-5F-oq7">
-                                                    <rect key="frame" x="20" y="10" width="65" height="97.5"/>
+                                                    <rect key="frame" x="20" y="15" width="200" height="87.5"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mg_icon_launchscreen_light" translatesAutoresizingMaskIntoConstraints="NO" id="PnW-Hc-EeH">
-                                                            <rect key="frame" x="0.0" y="34" width="30" height="30"/>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PnW-Hc-EeH">
+                                                            <rect key="frame" x="0.0" y="24" width="40" height="40"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="PnW-Hc-EeH" secondAttribute="height" multiplier="1:1" id="K2b-SQ-Aai"/>
-                                                                <constraint firstAttribute="height" constant="30" id="xZj-3t-neP"/>
+                                                                <constraint firstAttribute="height" constant="40" id="xZj-3t-neP"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MegaGeneral" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifE-N5-e9b">
-                                                            <rect key="frame" x="40" y="36" width="25" height="26"/>
-                                                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="22"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Ibx-be-xXG">
+                                                            <rect key="frame" x="50" y="21.5" width="150" height="45"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MegaGeneral" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifE-N5-e9b">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="26.5"/>
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An unique multipurpose template" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMy-WT-7Tt">
+                                                                    <rect key="frame" x="0.0" y="30.5" width="150" height="14.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.1176470588" green="0.1215686275" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="FjJ-5F-oq7" firstAttribute="leading" secondItem="5EJ-ye-X1f" secondAttribute="leading" constant="20" id="3VI-mj-7CR"/>
-                                                <constraint firstItem="FjJ-5F-oq7" firstAttribute="top" secondItem="5EJ-ye-X1f" secondAttribute="top" constant="10" id="Iec-cQ-3cB"/>
+                                                <constraint firstItem="FjJ-5F-oq7" firstAttribute="top" secondItem="5EJ-ye-X1f" secondAttribute="top" constant="15" id="Iec-cQ-3cB"/>
                                                 <constraint firstAttribute="trailing" secondItem="FjJ-5F-oq7" secondAttribute="trailing" constant="20" id="ROF-iO-ohQ"/>
-                                                <constraint firstAttribute="bottom" secondItem="FjJ-5F-oq7" secondAttribute="bottom" priority="999" constant="10" id="hxY-SJ-iiD"/>
+                                                <constraint firstAttribute="bottom" secondItem="FjJ-5F-oq7" secondAttribute="bottom" constant="15" id="hxY-SJ-iiD"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="iconImageView" destination="PnW-Hc-EeH" id="lVb-0q-P7Z"/>
+                                            <outlet property="subtitleLabel" destination="OMy-WT-7Tt" id="iHi-Y1-CBd"/>
                                             <outlet property="titleLabel" destination="ifE-N5-e9b" id="yAq-V8-dH8"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MGMenuItemCell" rowHeight="66" id="xsK-ra-JAP" customClass="MGMenuItemCell" customModule="MGSideMenuKit">
-                                        <rect key="frame" x="0.0" y="146" width="240" height="66"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MGMenuItemCell" rowHeight="86" id="xsK-ra-JAP" customClass="MGMenuItemCell" customModule="MGSideMenuKit">
+                                        <rect key="frame" x="0.0" y="146" width="240" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xsK-ra-JAP" id="nhV-Iw-s01">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="65.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="85.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fzk-ft-Cih">
-                                                    <rect key="frame" x="23" y="15" width="59" height="24"/>
+                                                    <rect key="frame" x="28" y="15" width="189" height="24"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2Tc-07-rCS">
                                                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
@@ -86,7 +93,7 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZN-ub-i1c">
-                                                            <rect key="frame" x="32" y="0.0" width="27" height="24"/>
+                                                            <rect key="frame" x="32" y="0.0" width="157" height="24"/>
                                                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                             <color key="textColor" white="1" alpha="0.90015705540000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -96,9 +103,9 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="fzk-ft-Cih" firstAttribute="leading" secondItem="nhV-Iw-s01" secondAttribute="leading" constant="23" id="HNB-lc-L5K"/>
+                                                <constraint firstItem="fzk-ft-Cih" firstAttribute="leading" secondItem="nhV-Iw-s01" secondAttribute="leading" constant="28" id="HNB-lc-L5K"/>
                                                 <constraint firstAttribute="trailing" secondItem="fzk-ft-Cih" secondAttribute="trailing" constant="23" id="bNi-ja-qMb"/>
-                                                <constraint firstAttribute="bottom" secondItem="fzk-ft-Cih" secondAttribute="bottom" priority="999" constant="15" id="bO0-IR-qFn"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fzk-ft-Cih" secondAttribute="bottom" constant="15" id="bO0-IR-qFn"/>
                                                 <constraint firstItem="fzk-ft-Cih" firstAttribute="top" secondItem="nhV-Iw-s01" secondAttribute="top" constant="15" id="vEf-3f-P95"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -112,9 +119,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Y22-AO-4Fy" firstAttribute="leading" secondItem="i4G-fG-EMW" secondAttribute="leading" id="0K7-rr-PcG"/>
+                            <constraint firstItem="Y22-AO-4Fy" firstAttribute="leading" secondItem="5EC-LN-UYL" secondAttribute="leading" id="0K7-rr-PcG"/>
                             <constraint firstItem="Y22-AO-4Fy" firstAttribute="bottom" secondItem="i4G-fG-EMW" secondAttribute="bottom" id="2J9-ZS-B86"/>
-                            <constraint firstItem="Y22-AO-4Fy" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="i4G-fG-EMW" secondAttribute="trailing" id="Dit-3o-3VR"/>
+                            <constraint firstItem="Y22-AO-4Fy" firstAttribute="trailing" secondItem="5EC-LN-UYL" secondAttribute="trailing" id="Dit-3o-3VR"/>
                             <constraint firstItem="Y22-AO-4Fy" firstAttribute="top" secondItem="5EC-LN-UYL" secondAttribute="topMargin" id="a9U-kf-J1I"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="i4G-fG-EMW"/>
@@ -160,7 +167,4 @@
             <point key="canvasLocation" x="417" y="-379"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="mg_icon_launchscreen_light" width="16" height="16"/>
-    </resources>
 </document>

@@ -27,15 +27,15 @@ import Foundation
 
 public extension String {
     
-    public var html2AttributedString: NSAttributedString? {
+    var html2AttributedString: NSAttributedString? {
         return Data(utf8).html2AttributedString
     }
     
-    public var html2String: String {
+    var html2String: String {
         return html2AttributedString?.string ?? ""
     }
     
-    public var htmlToAttributedString: NSAttributedString? {
+    var htmlToAttributedString: NSAttributedString? {
         guard let data = data(using: String.Encoding.utf8) else { return nil }
         do {
             return try NSAttributedString(data: data, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
@@ -44,15 +44,15 @@ public extension String {
         }
     }
     
-    public func localized(tableName:String = "Localizable", bundle:Bundle = .main, comment:String = "") -> String {
+    func localized(tableName:String = "Localizable", bundle:Bundle = .main, comment:String = "") -> String {
         return NSLocalizedString(self, tableName: tableName, bundle: bundle, value: "**\(self)**", comment: comment)
     }
     
-    public var localized:String {
+    var localized:String {
         return self.localized()
     }
     
-    public func localized(_ from:AnyClass) -> String {
+    func localized(_ from:AnyClass) -> String {
         return self.localized(bundle: Bundle(for: from))
     }
 }
@@ -72,7 +72,7 @@ extension Bundle {
 /// seealso: https://github.com/mwaterfall/MWFeedParser/blob/master/Classes/NSString%2BHTML.m
 public extension NSString {
     
-    public func byConvertingHTMLToPlainText() -> String {
+    func byConvertingHTMLToPlainText() -> String {
         
         let stopCharacters = CharacterSet(charactersIn: "< \t\n\r\(0x0085)\(0x000C)\(0x2028)\(0x2029)")
         let newLineAndWhitespaceCharacters = CharacterSet(charactersIn: " \t\n\r\(0x0085)\(0x000C)\(0x2028)\(0x2029)")

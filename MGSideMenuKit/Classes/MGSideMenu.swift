@@ -34,22 +34,29 @@ public protocol MGSideMenuAsset {
 }
 
 public protocol MGSideMenuString {
-    var title: String { get set }
+    var tableViewHeaderTitle: String { get set }
+    var tableViewHeaderSubtitle: String { get set }
 }
 
 public protocol MGSideMenuFont {
-    var title: UIFont? { get set }
+    var tableViewHeaderTitle: UIFont? { get set }
+    var tableViewHeaderSubtitle: UIFont? { get set }
+    var tableViewCellTitle: UIFont? { get set }
 }
 
 public protocol MGSideMenuImage {
-    var avatar: UIImage? { get set }
+    var tableViewHeaderImage: UIImage? { get set }
 }
 
 public protocol MGSideMenuColor {
+    var view: UIColor { get set }
     var backgroundView: UIColor { get set }
-    var headerView: UIColor { get set }
-    var cellView: UIColor { get set }
-    var cellLabel: UIColor { get set }
+    var tableView: UIColor { get set }
+    var tableViewSeparator: UIColor { get set }
+    var tableViewCell: UIColor { get set }
+    var tableViewHeader: UIColor { get set }
+    var tableViewCellContent: UIColor { get set }
+    var tableViewHeaderContent: UIColor { get set }
 }
 
 public protocol MGSideMenuData {
@@ -58,9 +65,9 @@ public protocol MGSideMenuData {
 }
 
 public class MGSideMenuItem {
-    public var title:String!
-    public var icon:UIImage?
-    public var identifier:String!
-    public var data:Any?
+    public var title: String!
+    public var icon: UIImage?
+    public var identifier: String!
+    public var data: Any?
     public init() {}
 }

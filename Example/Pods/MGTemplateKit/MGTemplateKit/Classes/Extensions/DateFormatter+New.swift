@@ -28,7 +28,7 @@ import Foundation
 public extension DateFormatter {
     
     @discardableResult
-    public static func formatedDate(dateString:String, fromFormat:String, toFormat:String) -> String? {
+    static func formatedDate(dateString:String, fromFormat:String, toFormat:String) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = fromFormat
         let dateFormatterPrint = DateFormatter()

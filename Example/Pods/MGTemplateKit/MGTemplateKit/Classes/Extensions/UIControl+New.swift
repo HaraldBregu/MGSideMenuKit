@@ -27,13 +27,13 @@ import UIKit
 
 public extension UIControl {
     
-    public func addAction(for controlEvents: UIControl.Event, _ closure: @escaping ()->()) {
+    func addAction(for controlEvents: UIControl.Event, _ closure: @escaping ()->()) {
         let sleeve = ClosureSleeve(closure)
         addTarget(sleeve, action: #selector(ClosureSleeve.invoke), for: controlEvents)
         objc_setAssociatedObject(self, String(format: "[%d]", arc4random()), sleeve, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
     }
     
-    public func removeAction(for controlEvents: UIControl.Event) {
+    func removeAction(for controlEvents: UIControl.Event) {
         removeTarget(nil, action: nil, for: controlEvents)
     }
     

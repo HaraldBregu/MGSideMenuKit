@@ -26,9 +26,9 @@
 import Foundation
 import SideMenuSwift
 
-public class MGSideMenuController:UIViewController {
-    public var delegate:MGSideMenuControllerDelegate?    
-    public var dataSource:MGSideMenuControllerDataSource! {
+public class MGSideMenuController: UIViewController {
+    public var delegate: MGSideMenuControllerDelegate?
+    public var dataSource: MGSideMenuControllerDataSource! {
         didSet {
             if let controller = _splitViewController {
                 controller.viewControllers[1] = dataSource.controller(_menuController)
@@ -46,7 +46,7 @@ public class MGSideMenuController:UIViewController {
         _menuController.tableView.dataSource = self
     }
     
-    public var assets:MGSideMenuAsset? {
+    public var assets: MGSideMenuAsset? {
         didSet {
             _menuController.assets = assets
         }
@@ -78,15 +78,15 @@ public class MGSideMenuController:UIViewController {
         }
     }
     
-    public var instance:MGSideMenuController {
+    public var instance: MGSideMenuController {
         _menuController = _storyboard.instantiateViewController(withIdentifier: menuViewControllerIdentifier) as? MGMenuController
 
         let centerController = UIViewController()
-        centerController.view.backgroundColor = .red
         
         if UIDevice.current.userInterfaceIdiom == .pad {
             let splitController = UISplitViewController()
-            splitController.maximumPrimaryColumnWidth = 240
+            splitController.maximumPrimaryColumnWidth = 280
+            _menuController.width = 280
             splitController.viewControllers = [_menuController, centerController]
             addChild(splitController)
             splitController.view.frame = view.frame
@@ -95,7 +95,7 @@ public class MGSideMenuController:UIViewController {
             return self
         }
         
-        SideMenuController.preferences.basic.menuWidth = 240
+        SideMenuController.preferences.basic.menuWidth = 250
         SideMenuController.preferences.basic.statusBarBehavior = .none
         SideMenuController.preferences.basic.position = .under
         SideMenuController.preferences.basic.direction = .left
@@ -105,6 +105,7 @@ public class MGSideMenuController:UIViewController {
         SideMenuController.preferences.basic.defaultCacheKey = "0"
         
         let sideMenuController = SideMenuController()
+        _menuController.width = 250
         sideMenuController.menuViewController = _menuController
         sideMenuController.contentViewController = centerController
 
@@ -116,17 +117,17 @@ public class MGSideMenuController:UIViewController {
         return self
     }
 
-    private var _splitViewController:UISplitViewController? {
+    private var _splitViewController: UISplitViewController? {
         return children.first(where: { $0 is UISplitViewController }) as? UISplitViewController
     }
     
-    private var _sideMenuController:SideMenuController? {
+    private var _sideMenuController: SideMenuController? {
         return children.first(where: { $0 is SideMenuController }) as? SideMenuController
     }
 
-    private var _menuController:MGMenuController!
+    private var _menuController: MGMenuController!
 
-    private var _storyboard:UIStoryboard {
+    private var _storyboard: UIStoryboard {
         let podBundle = Bundle(for: MGSideMenuController.self)
         let bundleURL = podBundle.url(forResource: resourceName, withExtension: resourceExtension)
         let bundle = Bundle(url: bundleURL!) ?? Bundle()
@@ -140,17 +141,25 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableCell(withIdentifier: "MGMenuHeaderCell") as? MGMenuHeaderCell
-        header?.contentView.backgroundColor = assets?.color.headerView
-        header?.backgroundColor = assets?.color.headerView
-        header?.iconImageView.isHidden = assets?.image.avatar == nil
-        header?.iconImageView.image = assets?.image.avatar
-        header?.titleLabel.font = assets?.font.title
-        header?.titleLabel.text = assets?.string.title
-        return header ?? MGMenuHeaderCell()
+        header?.contentView.backgroundColor = assets?.color.tableViewHeader
+        header?.backgroundColor = assets?.color.tableViewHeader
+        header?.iconImageView.isHidden = assets?.image.tableViewHeaderImage == nil
+        header?.iconImageView.image = assets?.image.tableViewHeaderImage
+        header?.titleLabel.text = assets?.string.tableViewHeaderTitle
+        header?.titleLabel.textColor = assets?.color.tableViewHeaderContent
+        if let font = assets?.font.tableViewHeaderTitle {
+            header?.titleLabel.font = font
+        }
+        header?.subtitleLabel.text = assets?.string.tableViewHeaderSubtitle
+        header?.subtitleLabel.textColor = assets?.color.tableViewHeaderContent
+        if let font = assets?.font.tableViewHeaderSubtitle {
+            header?.titleLabel.font = font
+        }
+        return header?.contentView ?? MGMenuHeaderCell().contentView
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 70
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -160,12 +169,15 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MGMenuItemCell") as? MGMenuItemCell
         let item = assets?.data.items[indexPath.row]
-        cell?.contentView.backgroundColor = assets?.color.cellView
-        cell?.backgroundColor = assets?.color.cellView
+        cell?.contentView.backgroundColor = assets?.color.tableViewCell
+        cell?.backgroundColor = assets?.color.tableViewCell
         cell?.iconImageView.isHidden = item?.icon == nil
         cell?.iconImageView.image = item?.icon
         cell?.titleLabel.text = item?.title
-        cell?.titleLabel.textColor = assets?.color.cellLabel
+        cell?.titleLabel.textColor = assets?.color.tableViewCellContent
+        if let font = assets?.font.tableViewCellTitle {
+            cell?.titleLabel.font = font
+        }
         return cell ?? MGMenuItemCell()
     }
         
@@ -204,6 +216,7 @@ public class MGMenuItemCell: UITableViewCell {
 public class MGMenuHeaderCell: UITableViewCell {
     @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var subtitleLabel: UILabel!
     override public func awakeFromNib() {
         super.awakeFromNib()
         iconImageView.layer.cornerRadius = 3

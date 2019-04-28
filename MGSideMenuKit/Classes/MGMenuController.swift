@@ -28,7 +28,8 @@ import SideMenuSwift
 
 public class MGMenuController: UIViewController {
     @IBOutlet var tableView: UITableView!
-
+    var width: CGFloat!
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,11 +42,21 @@ public class MGMenuController: UIViewController {
         tableView.showsHorizontalScrollIndicator = false
     }
     
-    var assets:MGSideMenuAsset? {
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.frame.size.width = width
+    }
+    
+    public override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        view.frame.size.width = width
+    }
+    
+    var assets: MGSideMenuAsset? {
         didSet {
-            view.backgroundColor = assets?.color.backgroundView
-            tableView.backgroundColor = assets?.color.backgroundView
-            tableView.separatorColor = assets?.color.backgroundView
+            view.backgroundColor = assets?.color.view
+            tableView.backgroundColor = assets?.color.tableView
+            tableView.separatorColor = assets?.color.tableViewSeparator
         }
     }
 

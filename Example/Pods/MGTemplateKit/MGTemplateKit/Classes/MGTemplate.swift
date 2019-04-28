@@ -28,17 +28,19 @@ import UIColor_Hex_Swift
 import FontBlaster
 
 public class MGTemplate {
-   
+    public static var assets: MGTemplateAssets!
+    public static var color: MGTemplateColor!
+    public static var font: MGTemplateFont!
+
+    public static func setup(assets: MGTemplateAssets) {
+        FontBlaster.blast(bundle: Bundle(for: MGTemplate.self))
+        MGTemplate.assets = assets
+        MGTemplate.color = assets.color
+        MGTemplate.font = assets.font
+    }
+
     private static let darkColor = UIColor("#15161D")
     private static let contentColor = UIColor("#F3F7F8")
-
-    public init() {
-        FontBlaster.blast(bundle: Bundle(for: MGTemplate.self))
-    }
-    
-    public static func setup() {
-        FontBlaster.blast(bundle: Bundle(for: MGTemplate.self))
-    }
 
     public struct NavigationBar {
         public static let backgroundColor = darkColor

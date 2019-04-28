@@ -1,8 +1,8 @@
 PODS:
   - FontBlaster (4.1.0)
-  - MGSideMenuKit (0.1.6):
+  - MGSideMenuKit (0.2.3):
     - SideMenuSwift
-  - MGTemplateKit (0.1.7):
+  - MGTemplateKit (0.2.0):
     - FontBlaster
     - UIColor_Hex_Swift (~> 4.2.0)
   - SideMenuSwift (1.0.1)
@@ -10,7 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - MGSideMenuKit (from `../`)
-  - "MGTemplateKit (from `https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git`)"
+  - "MGTemplateKit (from `https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git`)"
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -22,20 +22,20 @@ EXTERNAL SOURCES:
   MGSideMenuKit:
     :path: "../"
   MGTemplateKit:
-    :git: "https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git"
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
 
 CHECKOUT OPTIONS:
   MGTemplateKit:
-    :commit: e59c8c520191913bf6c0fa04fd8234fb499ba5f6
-    :git: "https://haraldbregu@bitbucket.org/haraldbregu/mgtemplatekit.git"
+    :commit: e2bddd04d445bd37446072eff6a5a4d3da74845f
+    :git: "https://haraldbregu:4a4d1162147e80549f22cafb59060bdf59c4934a@github.com/HaraldBregu/MGTemplateKit.git"
 
 SPEC CHECKSUMS:
   FontBlaster: 127aa66419478d1c62926c7fdb39841633344a45
-  MGSideMenuKit: 4cdadacfa4bf8184e7eecad1ada0e831800a99f9
-  MGTemplateKit: 8ccf7019c7411698e55b35ee9f6fd0050dbb431d
+  MGSideMenuKit: eaa3571037129161f7e0a6716b3964e07fa04043
+  MGTemplateKit: 42b5c6d3356add2ed830003a2343020a4618b016
   SideMenuSwift: a78d47182aa03b5c07570fe57d3ba22c4561f2ce
   UIColor_Hex_Swift: bc07fc197421ee896b9ed6dcfa2054b7fbf75145
 
-PODFILE CHECKSUM: 390d7602b7d0baaadd0a49caf1ec0b5303ae5e17
+PODFILE CHECKSUM: a560d30797b662ac24d3be0083de87e19a851699
 
 COCOAPODS: 1.6.1

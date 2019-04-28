@@ -27,7 +27,7 @@ import UIKit
 
 public extension UIImage {
     
-    public convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
+    convenience init?(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) {
         let rect = CGRect(origin: .zero, size: size)
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         color.setFill()
@@ -39,7 +39,7 @@ public extension UIImage {
         self.init(cgImage: cgImage)
     }
     
-    public func tint(with color: UIColor) -> UIImage {
+    func tint(with color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
         guard let context = UIGraphicsGetCurrentContext() else { return self }
         
@@ -61,7 +61,7 @@ public extension UIImage {
         return newImage
     }
     
-    public func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage {
+    func imageWithImage(image:UIImage, scaledToSize newSize:CGSize) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 0.0);
         image.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height:newSize.height))
         let newImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
