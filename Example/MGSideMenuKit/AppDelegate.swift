@@ -208,9 +208,9 @@ extension SideMenuAssetData {
                 tableViewHeaderTitle: "Megageneral",
                 tableViewHeaderSubtitle: "An unique multipurpose template"),
             font: SideMenuFont(
-                tableViewHeaderTitle: nil,
-                tableViewHeaderSubtitle: nil,
-                tableViewCellTitle: nil),
+                tableViewHeaderTitle: UIFont.boldSystemFont(ofSize: 34),
+                tableViewHeaderSubtitle: UIFont.boldSystemFont(ofSize: 34),
+                tableViewCellTitle: UIFont.boldSystemFont(ofSize: 34)),
             image: SideMenuImage(
                 tableViewHeaderImage: #imageLiteral(resourceName: "MGIconLight")),
             color: SideMenuColor(

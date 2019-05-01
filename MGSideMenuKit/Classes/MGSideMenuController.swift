@@ -153,7 +153,7 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
         header?.subtitleLabel.text = assets?.string.tableViewHeaderSubtitle
         header?.subtitleLabel.textColor = assets?.color.tableViewHeaderContent
         if let font = assets?.font.tableViewHeaderSubtitle {
-            header?.titleLabel.font = font
+            header?.subtitleLabel.font = font
         }
         return header?.contentView ?? MGMenuHeaderCell().contentView
     }
