@@ -162,6 +162,22 @@ extension MGSideMenuController: UITableViewDataSource, UITableViewDelegate {
         return 70
     }
     
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer = tableView.dequeueReusableCell(withIdentifier: "MGMenuFooterCell") as? MGMenuFooterCell
+        footer?.contentView.backgroundColor = assets?.color.tableViewFooter
+        footer?.backgroundColor = assets?.color.tableViewFooter
+        footer?.titleLabel.text = assets?.string.tableViewFooterTitle
+        footer?.titleLabel.textColor = assets?.color.tableViewFooterContent
+        if let font = assets?.font.tableViewFooterTitle {
+            footer?.titleLabel.font = font
+        }
+        return footer?.contentView ?? MGMenuFooterCell().contentView
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30.0
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return assets?.data.items.count ?? 0
     }
@@ -221,6 +237,13 @@ public class MGMenuHeaderCell: UITableViewCell {
         super.awakeFromNib()
         iconImageView.layer.cornerRadius = 3
         iconImageView.clipsToBounds = true
+    }
+}
+
+public class MGMenuFooterCell: UITableViewCell {
+    @IBOutlet var titleLabel: UILabel!
+    override public func awakeFromNib() {
+        super.awakeFromNib()
     }
 }
 

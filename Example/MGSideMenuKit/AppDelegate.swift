@@ -206,11 +206,13 @@ extension SideMenuAssetData {
         return SideMenuAssets(
             string: SideMenuString(
                 tableViewHeaderTitle: "Megageneral",
-                tableViewHeaderSubtitle: "An unique multipurpose template"),
+                tableViewHeaderSubtitle: "An unique multipurpose template",
+                tableViewFooterTitle: "Copywright all rights reserved"),
             font: SideMenuFont(
                 tableViewHeaderTitle: UIFont.boldSystemFont(ofSize: 34),
                 tableViewHeaderSubtitle: UIFont.boldSystemFont(ofSize: 34),
-                tableViewCellTitle: UIFont.boldSystemFont(ofSize: 34)),
+                tableViewCellTitle: UIFont.boldSystemFont(ofSize: 34),
+                tableViewFooterTitle: UIFont.boldSystemFont(ofSize: 20)),
             image: SideMenuImage(
                 tableViewHeaderImage: #imageLiteral(resourceName: "MGIconLight")),
             color: SideMenuColor(
@@ -221,7 +223,8 @@ extension SideMenuAssetData {
                 tableViewCell: MGTemplate.assets.color.sideBar,
                 tableViewHeader: MGTemplate.assets.color.sideBar,
                 tableViewCellContent: .white,
-                tableViewHeaderContent: .white),
+                tableViewHeaderContent: .white,
+                tableViewFooter: .red, tableViewFooterContent: .white),
             data: SideMenuData(
                 items: newData,
                 statusBarStyle: .lightContent))
@@ -239,12 +242,14 @@ struct SideMenuAssets: MGSideMenuAsset {
 struct SideMenuString: MGSideMenuString {
     var tableViewHeaderTitle: String
     var tableViewHeaderSubtitle: String
+    var tableViewFooterTitle: String
 }
 
 struct SideMenuFont: MGSideMenuFont {
     var tableViewHeaderTitle: UIFont?
     var tableViewHeaderSubtitle: UIFont?
     var tableViewCellTitle: UIFont?
+    var tableViewFooterTitle: UIFont?
 }
 
 struct SideMenuImage: MGSideMenuImage {
@@ -260,6 +265,8 @@ struct SideMenuColor: MGSideMenuColor {
     var tableViewHeader: UIColor
     var tableViewCellContent: UIColor
     var tableViewHeaderContent: UIColor
+    var tableViewFooter: UIColor
+    var tableViewFooterContent: UIColor
 }
 
 struct SideMenuData:MGSideMenuData {

@@ -114,6 +114,37 @@
                                             <outlet property="titleLabel" destination="CZN-ub-i1c" id="Wr5-Vx-pCc"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MGMenuFooterCell" rowHeight="118" id="vVf-6h-VJe" customClass="MGMenuFooterCell" customModule="MGSideMenuKit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="232" width="240" height="118"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vVf-6h-VJe" id="F1j-X4-Av5">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="117.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dSr-DL-eyt">
+                                                    <rect key="frame" x="20" y="5" width="200" height="107.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MegaGeneral Team all rights reserved." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SQ2-Tg-JTY">
+                                                            <rect key="frame" x="0.0" y="0.0" width="200" height="107.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.1176470588" green="0.1215686275" blue="0.1450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="dSr-DL-eyt" secondAttribute="bottom" constant="5" id="1o7-fm-ucI"/>
+                                                <constraint firstAttribute="trailing" secondItem="dSr-DL-eyt" secondAttribute="trailing" constant="20" id="Hlt-RB-sVS"/>
+                                                <constraint firstItem="dSr-DL-eyt" firstAttribute="leading" secondItem="F1j-X4-Av5" secondAttribute="leading" constant="20" id="TTd-L7-aqY"/>
+                                                <constraint firstItem="dSr-DL-eyt" firstAttribute="top" secondItem="F1j-X4-Av5" secondAttribute="top" constant="5" id="eKw-9z-bbx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="SQ2-Tg-JTY" id="ZOG-VX-ZIr"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>

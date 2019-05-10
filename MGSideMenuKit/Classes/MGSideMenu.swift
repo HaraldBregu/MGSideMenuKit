@@ -36,12 +36,14 @@ public protocol MGSideMenuAsset {
 public protocol MGSideMenuString {
     var tableViewHeaderTitle: String { get set }
     var tableViewHeaderSubtitle: String { get set }
+    var tableViewFooterTitle: String { get set }
 }
 
 public protocol MGSideMenuFont {
     var tableViewHeaderTitle: UIFont? { get set }
     var tableViewHeaderSubtitle: UIFont? { get set }
     var tableViewCellTitle: UIFont? { get set }
+    var tableViewFooterTitle: UIFont? { get set }
 }
 
 public protocol MGSideMenuImage {
@@ -55,8 +57,10 @@ public protocol MGSideMenuColor {
     var tableViewSeparator: UIColor { get set }
     var tableViewCell: UIColor { get set }
     var tableViewHeader: UIColor { get set }
+    var tableViewFooter: UIColor { get set }
     var tableViewCellContent: UIColor { get set }
     var tableViewHeaderContent: UIColor { get set }
+    var tableViewFooterContent: UIColor { get set }
 }
 
 public protocol MGSideMenuData {
